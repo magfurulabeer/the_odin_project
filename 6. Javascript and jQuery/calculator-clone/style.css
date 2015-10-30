@@ -1,0 +1,98 @@
+* 	{
+	margin: 0;
+	padding: 0;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 100;
+}
+
+header {
+	margin-left: auto;
+	margin-right: auto;
+	width: 235px;
+}
+
+h1 {
+	font-size: 1.5em;
+}
+
+h3{
+	font-size: .9em;
+}
+
+body {
+	padding-top: 50px;
+}
+
+#calculator {
+	
+	width:201px;
+	height: 335px;
+}
+
+#screen {
+	width:191px;
+	height: 45px;
+	background-color: #000;
+	color: #fff;
+	text-align: right;
+	padding: 40px 5px 5px 5px;
+	font-size: 40px;
+}
+
+#screen p {
+	padding-top: 0;
+}
+
+#keypad {
+	width:200px;
+	height: 250px;
+	border-right: 1px solid #57585a;
+	border-bottom: 1px solid #57585a;
+}
+
+button {
+	height: 50px;
+	width: 50px;
+	font-size: 1.5em;
+	background-color: #d8d9db;
+	border: 1px solid #57585a;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	float: left;
+}
+
+#wide {
+	width: 100px;
+}
+
+.operator, .equals {
+	background-color: #f48e12;
+	color: #fff;
+}
+
+.active {
+	border: 2px solid black;
+}
+
+#iphone {
+	position: relative;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 64px;
+	padding-left: 11px;
+	width: 215px;
+	height: 400px;
+	background-image: url(iphone.png);
+}
+
+.home {
+	position: absolute;
+	bottom: 19px;
+	right: 97px;
+	border: 1px solid #000;
+	border-radius: 50px;
+	height: 35px;
+	width: 35px;
+	background-color: #f5f5f5;
+}
