@@ -1,6 +1,6 @@
 # Mint.com Forms
-A static clone of the a YouTube video page I made for The Odin Project.
-This project has no functionality except for the embedded video. Everything else is a cosmetic copy.
+A static clone of the Mint.com sign up page I made for The Odin Project.
+This project has no functionality. It is only a cosmetic copy.
 
 ## Project: HTML Forms (with Mint)
 * Go to Mint.com's signup page and have a look around. The form isn't exceptionally complicated.
