@@ -22,7 +22,6 @@ adjusted to fit
 * Push your project to Github and share the solution below.
 * Extra credit: If you're comfortable with jQuery, create a "screen" for your calculator -- another <div> which displays the numbers and the results like a normal calculator would.
 * Extra credit: Create a "parent filter" which checks if the user has inputted any immature numbers "e.g. 80085" and scolds the user if so.
-Calculator
 
 
 
