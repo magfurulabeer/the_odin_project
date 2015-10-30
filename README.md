@@ -1,2 +1,3 @@
-# the_odin_project
-The Odin Project
+# README
+
+This repository hosts my submissions for the project assignments from The Odin Project - an open source curriculum for learning web development.
