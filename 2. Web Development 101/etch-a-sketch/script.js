@@ -142,35 +142,39 @@ function changeColor() {
 	if(trail) {
 		$(this).css("background-color", color);
 	} else {
-		if(color === "rainbow") {
-			if(!$(this).hasClass("tag")) {
+		if(!$(this).hasClass("tag")) {
+			if(color === "rainbow") {
 				var randomColor = "rgb(" + d255() + "," + d255() + "," + d255() + ")";
 				$(this).css("background-color", randomColor);
-				$(this).addClass("tag");
-			}
-		} else if (color === "gradient") {
-			if(!$(this).hasClass("tag")) {
+			} else if (color === "gradient") {
 				var gradColor = "rgb(" + colorCode + "," + colorCode + "," + colorCode + ")";
 				$(this).css("background-color", gradColor);
-				$(this).addClass("tag");
-			}
-			if(reverse) {
-				if(colorCode === 0) {
-					reverse = false;
+				if(reverse) {
+					if(colorCode === 0) {
+						reverse = false;
+					}
 				}
-			}
-			if(colorCode === 255) {
-				reverse = true;
-			}
-			reverse ? colorCode -= 1 : colorCode += 1;
-		} else {
-			$(this).addClass(color);
+				if(colorCode === 255) {
+					reverse = true;
+				}
+				reverse ? colorCode -= 1 : colorCode += 1;
+			} else {
+				$(this).addClass(color);
+			}		
 		}
+		$(this).addClass("tag");	
 	}
 }
 
+function fadeInColor() {
+
+}
+
+function fadeOutColor() {
+
+}
+
 function fadeColor() {
-	alert("fade");
 	$(this).fadeOut(1000);
 }
 
@@ -191,8 +195,11 @@ function setPanel() {
 function toggleTrail() {
 	$(".square").off();
 	if($(this).attr("id","trail")) {
-		$(".square").on("mouseenter",changeColor);
-		$(".square").on("mouseleave",fadeColor);
+		//$(".square").on("mouseenter",changeColor);
+		//$(".square").on("mouseleave",fadeColor);
+		$(".square").hover(changeColor, function() {
+		    $(this).animate({backgroundColor:"#000"},'slow');
+		  });
 		trail = true;
 	} else {
 		trail = false;
