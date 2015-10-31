@@ -5,14 +5,7 @@ var padding = 4;
 var color = "blue";
 var numrows = 16;
 var numcols = 16;
-var pawn = "<span class='glyphicon glyphicon-pawn'></span>"
-var king = "<span class='glyphicon glyphicon-king'></span>"
-var queen = "<span class='glyphicon glyphicon-queen'></span>"
-var bishop = "<span class='glyphicon glyphicon-bishop'></span>"
-var knight = "<span class='glyphicon glyphicon-knight'></span>"
-var rook = "<span class='glyphicon glyphicon-tower'></span>"
 var colorCode = 0;
-var trail = false;
 var reverse = false;
 var setPiece = false;
 
@@ -38,6 +31,12 @@ function clearGrid() {
 }
 
 function chessSet() {
+	var pawn = "<span class='glyphicon glyphicon-pawn'></span>"
+	var king = "<span class='glyphicon glyphicon-king'></span>"
+	var queen = "<span class='glyphicon glyphicon-queen'></span>"
+	var bishop = "<span class='glyphicon glyphicon-bishop'></span>"
+	var knight = "<span class='glyphicon glyphicon-knight'></span>"
+	var rook = "<span class='glyphicon glyphicon-tower'></span>"
 	var first = $(".square").first();
 	first.append(rook);
 	var toppieces = [knight, bishop, queen, king, bishop, knight, rook]
@@ -66,7 +65,6 @@ function chessSet() {
 		first.append(pawn);
 	}
 	$(".glyphicon").parent().addClass("pushup");
-
 }
 
 function imFeelingLucky() {
@@ -82,7 +80,6 @@ function displayError(message) {
 	removeErrors();
 	var error = "<div class='alert alert-danger' role='alert' onclick='errorFade()'>" + message + "</div>"
 	$("#toolbar").append(error);
-
 }
 
 function errorFade() {
@@ -92,6 +89,7 @@ function errorFade() {
 function removeErrors() {
 	$(".alert-danger").remove();
 }
+
 
 
 
@@ -143,44 +141,29 @@ function setColor() {
 }
 
 function changeColor() {
-	if(trail) {
-		$(this).css("background-color", color);
-	} else {
-		if(!$(this).hasClass("tag")) {
-			if(color === "rainbow") {
-				var randomColor = "rgb(" + d255() + "," + d255() + "," + d255() + ")";
-				$(this).css("background-color", randomColor);
-			} else if (color === "gradient") {
-				var gradColor = "rgb(" + colorCode + "," + colorCode + "," + colorCode + ")";
-				$(this).css("background-color", gradColor);
-				if(reverse) {
-					if(colorCode === 0) {
-						reverse = false;
-					}
+	if(!$(this).hasClass("tag")) {
+		if(color === "rainbow") {
+			$(this).css("background-color", randomColor());
+		} else if (color === "gradient") {
+			var gradColor = "rgb(" + colorCode + "," + colorCode + "," + colorCode + ")";
+			$(this).css("background-color", gradColor);
+			if(reverse) {
+				if(colorCode === 0) {
+					reverse = false;
 				}
-				if(colorCode === 255) {
-					reverse = true;
-				}
-				reverse ? colorCode -= 1 : colorCode += 1;
-			} else {
-				$(this).addClass(color);
-			}		
-		}
-		$(this).addClass("tag");	
+			}
+			if(colorCode === 255) {
+				reverse = true;
+			}
+			reverse ? colorCode -= 1 : colorCode += 1;
+		} else {
+			$(this).addClass(color);
+		}		
 	}
+	$(this).addClass("tag");	
 }
 
-function fadeInColor() {
 
-}
-
-function fadeOutColor() {
-
-}
-
-function fadeColor() {
-	$(this).fadeOut(1000);
-}
 
 function initialize() {
 	makeGrid(numrows, numcols);
@@ -194,23 +177,33 @@ function setPanel() {
 	$("#lucky").on("click",imFeelingLucky);
 	$("#trail").parent().css("right","11px");
 	$(".radio").on("click",toggleTrail);
+
 }
 
 function toggleTrail() {
+	var radio = $(this).find("input");
 	$(".square").off();
-	if($(this).attr("id","trail")) {
-		//$(".square").on("mouseenter",changeColor);
-		//$(".square").on("mouseleave",fadeColor);
-		$(".square").hover(changeColor, function() {
-		    $(this).animate({backgroundColor:"#000"},'slow');
-		  });
-		trail = true;
-	} else {
-		trail = false;
+	if(radio.attr("id") === "trail") {
+		$(".square").hover(function() {
+					if(color === "rainbow") {
+						$(this).css("background-color",randomColor());
+					} else if(color === "gradient") {
+						$(this).css("background-color","#000");
+					} else {
+						$(this).css("background-color",color);
+					}
+				}, function () {
+					$(this).animate({backgroundColor: "#d0d6e3"},700);
+			});
+	} 
+	if(radio.attr("id") === "notrail") {
 		$(".square").on("mouseover",changeColor);
 	}
 }
 
+function resetColor() {
+	$(this).css("background-color", "#d0d6e3");
+}
 
 function setScreen() {
 	$(".square").on("mouseover",changeColor);
@@ -221,5 +214,9 @@ function setScreen() {
 function d255() {
   return Math.floor(Math.random() * (255 - 1 + 1)) + 1;
 }
+function randomColor() {
+	return "rgb(" + d255() + "," + d255() + "," + d255() + ")";
+}
+
 initialize();
 
