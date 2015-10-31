@@ -14,6 +14,7 @@ var rook = "<span class='glyphicon glyphicon-tower'></span>"
 var colorCode = 0;
 var trail = false;
 var reverse = false;
+var setPiece = false;
 
 function makeGrid(rows, colomns) {
 	var width = (boxWidth + padding) * colomns;
@@ -70,7 +71,10 @@ function chessSet() {
 
 function imFeelingLucky() {
 	if(numcols == 8 && numrows == 8) {
-		chessSet();
+		if(!setPiece) {
+			chessSet();
+			setPiece = true;
+		}
 	}
 }
 
