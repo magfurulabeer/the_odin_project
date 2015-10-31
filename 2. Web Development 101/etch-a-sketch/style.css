@@ -1,0 +1,180 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	text-align: center;
+	background-image: url(subtle_white_mini_waves.png);
+}
+
+#toolbar {
+	background-color: #fff;
+	background-color: rgba(255,255,255,.35);
+}
+
+.tool {
+	display: inline-block;
+	margin: 0 10px 0 10px;
+}
+
+.pushup {
+	position: relative;
+	bottom: 4px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.grid-size  {
+	position: relative;
+	bottom: 11px;
+}
+
+li {
+	height: 30px;
+	width: 30px;
+	border: 1px solid black;
+	border-radius: 3px;
+	list-style: none;
+	display: inline-block;
+	opacity: .3;
+}
+
+#lucky {
+	position: relative;
+	bottom: 26px;
+	height: 50px;
+	border: 1px double rgba(91,192,222,1);
+	background-color: rgba(91,192,222,.7);
+
+}
+.active {
+	opacity: 1;
+}
+
+#outer {
+	border: 5px double black;
+	padding: 10px;
+	border-radius: 5px;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ff0000;
+	position: relative;
+}
+
+#sketch {
+	margin-left: auto;
+	margin-right: auto;
+	border: 5px double black;
+	padding: 5px 6px 0px 9px;
+	border-radius: 5px;
+	background-color: #d0d6e3;
+}
+
+h1 {
+	font-family: 'Delius Swash Caps', cursive;
+	color: #fff;
+	font-weight: bold;
+	font-size: 2.5em;
+	margin: 15px 10px 10px 10px;
+}
+
+.circle {
+	width: 60px;
+	height: 60px;
+	background-color: #fff;
+	border: 1px solid #000;
+	border-radius: 50%;
+	margin-top: 10px;
+	position: absolute;
+	bottom: 7px;
+}
+
+#left {
+	left: 10px;
+}
+
+#right {
+	right: 10px;
+}
+
+.square {
+	height: 20px;
+	width: 20px;
+	border: 1px solid black;
+	margin-right: 3px;
+	display: inline-block;
+}
+
+.blue {
+	background-color: #0000ff;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.green {
+	background-color: green;
+}
+
+.red {
+	background-color: red;
+}
+
+.orange {
+	background-color: orange;
+}
+
+.rainbow {
+	/* Gradient snippet from https://jsfiddle.net/jdniki/Vj87c/ */
+    background: #000; 
+    background: -moz-linear-gradient( top ,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 255, 0, 1) 15%,
+        rgba(0, 255, 0, 1) 30%,
+        rgba(0, 255, 255, 1) 50%,
+        rgba(0, 0, 255, 1) 65%,
+        rgba(255, 0, 255, 1) 80%,
+        rgba(255, 0, 0, 1) 100%);
+    background: -webkit-gradient(linear,  left top,  left bottom, 
+        color-stop(0%, rgba(255, 0, 0, 1)), 
+        color-stop(15%, rgba(255, 255, 0, 1)),
+        color-stop(30%, rgba(0, 255, 0, 1)),
+        color-stop(50%, rgba(0, 255, 255, 1)),
+        color-stop(65%, rgba(0, 0, 255, 1)),
+        color-stop(80%, rgba(255, 0, 255, 1)),
+        color-stop(100%, rgba(255, 0, 0, 1)));
+}
+
+.gradient {
+  background: -webkit-linear-gradient(left top, #000 , #fff); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #000, #fff); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #000, #fff); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #000 , #fff); /* Standard syntax */
+}
+
+h3 {
+	margin-top: 0;
+}
+
+div.radio label {
+	position: relative;
+}
+
+.options {
+	position: relative;
+    top: 8px;
+}
+
+.radio {
+	position: relative;
+	bottom: 1px;
+	margin-top: 3px;
+}
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sketch-A-Etch</title>	
+	<link href='https://fonts.googleapis.com/css?family=Delius+Swash+Caps' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+<body>
+	<div class="container-fluid">
+		
+		<div class="panel panel-default" id="toolbar">
+		  <div class="panel-body">
+		  <h3>Toolbar</h3>
+		  	<div class="tool">
+		  		<h4>Pick a Color</h4>
+		  		<ul id="color-picker">
+		  			<li class="blue"></li>
+		  			<li class="green"></li>
+		  			<li class="yellow"></li>
+		  			<li class="orange"></li>
+		  			<li class="red"></li>
+		  			<li class="rainbow"></li>
+		  			<li class="gradient"></li>
+		  		</ul>
+		  	</div>
+		  	<div class="tool grid-size">
+		  		<h4>Choose Grid Size</h4>
+		  		<form class="form-inline">
+		  		  <div class="form-group">
+		  		    <input type="number" class="form-control" id="row-number" placeholder="Rows" min ="10" max="100">
+		  		    <input type="number" class="form-control" id="colomn-number" placeholder="Cols" min ="10" max="100">
+		  		  </div>
+		  		</form>
+		  	</div>
+		  	<div class="tool options">
+		  		<h4>Options</h4>
+		  		<div class="radio">
+		  		  <label><input type="radio" name="blankRadio" id="notrail" value="option1" checked="checked">No Trail</label>
+		  		</div>
+		  		<div class="radio">
+		  		  <label><input type="radio" name="blankRadio" id="trail" value="option1">Trail</label>
+		  		</div>		
+		  	</div>
+		  	<div class="tool">
+		  		<div class="tool">
+		  		<button id="lucky" class="btn btn-default btn-info">I'm Feeling Lucky</button>
+		  	</div>	
+		  	</div>
+		  </div>
+		</div>
+		
+		<div id="outer">
+			<main id="sketch"></main>
+			<button id="left" class="circle"></button>
+			<h1>Sketch-A-Etch</h1>
+			<button id="right" class="circle"></button>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+		<script src="script.js"></script>
+	</div>
+</body>
+</html>
