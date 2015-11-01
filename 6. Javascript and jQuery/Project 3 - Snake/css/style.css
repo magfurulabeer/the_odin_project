@@ -1,0 +1,29 @@
+*	{
+	margin: 0;
+	padding: 0;
+}
+
+.square {
+	width: 20px;
+	height: 20px;
+	border-left: 1px solid rgba(0,0,0,.5);
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	display: inline-block;
+	box-sizing: border-box;
+	margin-top: -5px;
+}
+
+.container {
+	padding-top: 5px;
+	width: 401px;
+	margin-left: auto;
+	margin-right: auto;
+	border-right: 1px solid rgba(0,0,0,.5);
+	border-top: 1px solid rgba(0,0,0,.5);
+	height: 401px;
+}
+
+#screen {
+	padding-top: 50px;
+}
+
