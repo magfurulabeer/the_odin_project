@@ -1,29 +1,163 @@
 *	{
 	margin: 0;
 	padding: 0;
+	text-align: center;
+}
+
+body {
+	background-image: url(../images/congruent_pentagon.png);
 }
 
 .square {
 	width: 20px;
 	height: 20px;
-	border-left: 1px solid rgba(0,0,0,.5);
-	border-bottom: 1px solid rgba(0,0,0,.5);
+	/*border-left: 1px solid rgba(0,0,0,.5);
+	border-bottom: 1px solid rgba(0,0,0,.5);*/
 	display: inline-block;
 	box-sizing: border-box;
 	margin-top: -5px;
+	padding-left: 1px;
+	padding-bottom: 1px;
+	position: relative;
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
 }
 
 .container {
 	padding-top: 5px;
-	width: 401px;
+	width: 421px;
 	margin-left: auto;
 	margin-right: auto;
-	border-right: 1px solid rgba(0,0,0,.5);
-	border-top: 1px solid rgba(0,0,0,.5);
-	height: 401px;
+	height: 421px;
+	color: yellow;
 }
 
-#screen {
-	padding-top: 50px;
+#hud {
+	box-sizing: border-box;
+	height: 50px;
+	border: 1px solid black;
+	margin: 10px;
 }
 
+img {
+	max-width:100%;
+	max-height:100%;
+}
+
+.green {
+	background-image: url(../images/green.png);	
+}
+.grass {
+	background-image: url(../images/grass.png);	
+}
+.center {
+	background-image: url(../images/center.png);
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+}
+.centerleft {
+	background-image: url(../images/centerleft.png);
+}
+.centerright {
+	background-image: url(../images/centerright.png);
+}
+.centertop {
+	background-image: url(../images/centertop.png);
+}
+.centerbottom {
+	background-image: url(../images/centerbottom.png);	
+}
+.topleft {
+	background-image: url(../images/topleft.png);
+}
+.topright {
+	background-image: url(../images/topright.png);
+}
+.bottomleft {
+	background-image: url(../images/bottomleft.png);
+}
+.bottomright {
+	background-image: url(../images/bottomright.png);
+}
+.dirt {
+	background-image: url(../images/dirt.png);
+}
+.dirttop {
+	background-image: url(../images/dirttop.png);
+}
+.dirtbottom {
+	background-image: url(../images/dirtbottom.png);
+}
+.dirtright {
+	background-image: url(../images/dirtright.png);
+}
+.dirtleft {
+	background-image: url(../images/dirtleft.png);
+}
+.grassy {
+	background-image: url(../images/grassy.png);
+}
+.leaf {
+	background-image: url(../images/leaf.png);
+}
+.pinkflower1 {
+	background-image: url(../images/pinkflower1.png);
+}
+.pinkflower2 {
+	background-image: url(../images/pinkflower2.png);
+}
+.yellowflower1 {
+	background-image: url(../images/yellowflower1.png);
+}
+.yellowflower2 {
+	background-image: url(../images/yellowflower2.png);
+}
+
+
+.tile {
+	width: 20px;
+	height: 20px;
+	/*border-left: 1px solid rgba(0,0,0,.0);
+	border-bottom: 1px solid rgba(0,0,0,.0);*/
+	display: inline-block;
+	box-sizing: border-box;
+	margin-top: -5px;
+	padding-left: 1px;
+	padding-bottom: 1px;
+	position: relative;
+}
+
+.splash {
+	box-sizing: border-box;
+	border: 1px solid #000;
+	background-image: url(../images/greenpattern.png);
+	height: 400px;
+}
+
+h1 {
+	margin-top: 30px;
+	font-size: 5em;
+	font-family: 'vitaminregular', sans-serif;
+}
+
+h3 {
+	font-family: 'vitaminregular', sans-serif;
+}
+
+.start {
+	font-family: 'vitaminregular', sans-serif;
+	font-size: 2em;
+	color: #fff;
+	height: 70px;
+	width: 250px;
+	background-color: rgba(0,0,255,.5);
+	position: relative;
+	bottom: 30px;
+}
+
+.outline {
+	font-family: 'vitamin_outlinedregular', sans-serif;
+	color: #000;
+	position: relative;
+	bottom: 132px;
+}
