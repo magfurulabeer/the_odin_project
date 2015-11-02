@@ -91,7 +91,8 @@ function spawnFood() {
 	while(!blocked) {
 		var a = randomCoordinate();
 		var b = randomCoordinate();
-		if(a !== x && b !== y) {
+		//if(a !== x && b !== y) {
+		if(isEmpty("."+a+"-"+b)) {
 			var coordinate = "." + a + '-' + b;
 			addSprite(coordinate, sprites.redbird);
 			blocked = true;

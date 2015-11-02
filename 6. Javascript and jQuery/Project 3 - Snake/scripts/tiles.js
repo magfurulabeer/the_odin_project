@@ -56,10 +56,21 @@ function addTree() {
 		var br = "." + (treeX+1) + "-" + (treeY+1);
 		if((treeX < 8 || treeX > 14) && (treeY < 8 || treeY > 14)) {
 			if(isEmpty(tl) && isEmpty(tr) && isEmpty(bl) && isEmpty(br)) {
-				treeSprite(tl,"treetl");
-				treeSprite(tr,"treetr");
-				treeSprite(bl,"treebl");
-				treeSprite(br,"treebr");
+				var type = Math.floor(Math.random() * (3 - 1)) + 1;
+				switch(type) {
+					case 1: 
+						treeSprite(tl,"treetl");
+						treeSprite(tr,"treetr");
+						treeSprite(bl,"treebl");
+						treeSprite(br,"treebr");
+						break;
+					case 2:
+						treeSprite(tl,"embertl");
+						treeSprite(tr,"embertr");
+						treeSprite(bl,"emberbl");
+						treeSprite(br,"emberbr");
+						break;
+				}
 				valid = true;
 			}		
 		}

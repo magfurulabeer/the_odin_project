@@ -92,6 +92,77 @@ img {
 	bottom: 3px;
 }
 
+
+
+.tile {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	box-sizing: border-box;
+	margin-top: -5px;
+	padding-left: 1px;
+	padding-bottom: 1px;
+	position: relative;
+}
+
+.splash {
+	background-image: url(../images/greenpattern.png);
+	height: 400px;
+}
+
+h1 {
+	margin-top: 30px;
+	font-size: 5em;
+	font-family: 'vitaminregular', sans-serif;
+}
+
+h3 {
+	font-family: 'vitaminregular', sans-serif;
+}
+
+#title {
+	font-family: 'vitaminregular', sans-serif;
+	position: absolute;
+	
+	bottom: 7px;
+}
+
+p {
+	text-align: center;
+}
+
+.start {
+	font-family: 'vitaminregular', sans-serif;
+	font-size: 2em;
+	color: #fff;
+	height: 70px;
+	width: 250px;
+	background-color: rgba(0,0,255,.5);
+	position: relative;
+	bottom: 30px;
+}
+
+.outline {
+	font-family: 'vitamin_outlinedregular', sans-serif;
+	color: #000;
+	position: relative;
+	bottom: 132px;
+}
+
+.hidden {
+	display: none;
+}
+
+
+
+@-moz-document url-prefix() {
+    .container {
+    	height: 405px;
+    }
+}
+
+
+/******* Tiles *******/ 
 .green {
 	background-image: url(../images/green.png);	
 }
@@ -172,71 +243,15 @@ img {
 .treebr {
 	background-image: url(../images/treebr.png);
 }
-
-.tile {
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	box-sizing: border-box;
-	margin-top: -5px;
-	padding-left: 1px;
-	padding-bottom: 1px;
-	position: relative;
+.embertl {
+	background-image: url(../images/embertl.png);
 }
-
-.splash {
-	background-image: url(../images/greenpattern.png);
-	height: 400px;
+.embertr {
+	background-image: url(../images/embertr.png);
 }
-
-h1 {
-	margin-top: 30px;
-	font-size: 5em;
-	font-family: 'vitaminregular', sans-serif;
+.emberbl {
+	background-image: url(../images/emberbl.png);
 }
-
-h3 {
-	font-family: 'vitaminregular', sans-serif;
+.emberbr {
+	background-image: url(../images/emberbr.png);
 }
-
-#title {
-	font-family: 'vitaminregular', sans-serif;
-	position: absolute;
-	
-	bottom: 7px;
-}
-
-p {
-	text-align: center;
-}
-
-.start {
-	font-family: 'vitaminregular', sans-serif;
-	font-size: 2em;
-	color: #fff;
-	height: 70px;
-	width: 250px;
-	background-color: rgba(0,0,255,.5);
-	position: relative;
-	bottom: 30px;
-}
-
-.outline {
-	font-family: 'vitamin_outlinedregular', sans-serif;
-	color: #000;
-	position: relative;
-	bottom: 132px;
-}
-
-.hidden {
-	display: none;
-}
-
-
-
-@-moz-document url-prefix() {
-    .container {
-    	height: 405px;
-    }
-}
-
