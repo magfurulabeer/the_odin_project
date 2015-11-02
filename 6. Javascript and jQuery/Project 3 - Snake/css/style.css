@@ -21,6 +21,7 @@ body {
 	position: relative;
 	background-size: 20px 20px;
 	background-repeat: no-repeat;
+	overflow: hidden;
 }
 
 .container {

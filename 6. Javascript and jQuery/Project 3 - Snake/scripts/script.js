@@ -1,9 +1,10 @@
 var direction = 39;
+var lastDirection;
 var x = 11;
 var y = 11;
 var interval;
+var score = 0;
 var sprites = {
-	// Fix ID's
 	"head38": "<img id='headup' class='head' src='images/headup.png'>",
 	"head40": "<img id='headdown' class='head' src='images/headdown.png'>",
 	"head37": "<img id='headleft' class='head' src='images/headleft.png'>",
@@ -14,7 +15,7 @@ var sprites = {
 	"greenbird": "<img id='green' class='food' src='images/greenbird.png'>",
 	"bluebird": "<img id='blue' class='food' src='images/bluebird.png'>",
 	"tailbig": "<img id='tailbig' class='tail' src='images/tailbig.png'>",
-	"tailsmall": "<img id='tailsmall' class='tail' src='images/tailsmall.png'>"
+	"tailsmall": "<img id='tailsmall' class='tail' src='images/tailsmall.png'>" // Not used atm
 }
 
 var tail = [];
@@ -29,7 +30,6 @@ function createGrid() {
 
 function addSprite(tile, str) {
 	$(tile).append(str);
-	$(tile).css("bottom","2px");
 }
 
 function moveSprite(a,b) {
@@ -37,16 +37,19 @@ function moveSprite(a,b) {
 		gameOver();
 	} else {
 		if(eat(a,b)) {
-			$("." + x + "-" + y).find("img").appendTo($("." + a + "-" + b));
+			$("." + x + "-" + y).find(".head").appendTo($("." + a + "-" + b));
 			addTail(x,y);
 		} else {
-			$("." + x + "-" + y).find("img").appendTo($("." + a + "-" + b));
+			$("." + x + "-" + y).find(".head").appendTo($("." + a + "-" + b));
+			if(tail.length > 0) {
+				var last = tail.pop();
+				$("."+last).find(".tail").appendTo($("." + x + "-" + y));
+				last = x+"-"+y;
+				tail.unshift(last);
+			}
 		}
-		
-		$("." + x + "-" + y).css("bottom","0px");
-		$("." + a + "-" + b).css("bottom","2px");
-	}
-	
+		lastDirection = direction;
+	}	
 }
 
 function spawnFood() {
@@ -69,14 +72,19 @@ function eat(a,b) {
 		spawnFood();
 		return true;
 	}
-	else false;
-
+	return false;
 }
 
-function turn(key) {
-	if(36 < key < 41) {
+function turn(key) {	
+	if(tail.length > 0) {
+		var diff = Math.abs(lastDirection - key);
+		if(diff !== 2) {
+			direction = key;
+			$("." + x + "-" + y).find(".head").replaceWith(sprites["head"+direction]);
+		}
+	} else {
 		direction = key;
-		$("." + x + "-" + y).find("img").replaceWith(sprites["head"+direction]);
+		$("." + x + "-" + y).find(".head").replaceWith(sprites["head"+direction]);
 	}
 }
 
@@ -103,11 +111,16 @@ function move() {
 
 function addTail(a,b) {
 	addSprite("."+a+"-"+b, sprites.tailbig);
-	tail.push(a+"-"+b);
+	tail.unshift(a+"-"+b);
 }
 
 function collisionCheck(a,b) {
+	// If out of bound, return true
 	if(a < 1 || a > 21 || b < 1 || b > 21) {
+		return true;
+	}
+	// If tail, return true
+	if($("."+a+"-"+b).has(".tail").length > 0) {
 		return true;
 	}
 	return false;
@@ -115,12 +128,12 @@ function collisionCheck(a,b) {
 
 function gameOver() {
 	clearInterval(interval);
-	$("." + x + "-" + y).find("img").replaceWith(sprites["dead"]);
+	$("." + x + "-" + y).find(".head").replaceWith(sprites["dead"]);
 	$(".container").css("opacity",.5)
 }
 
 function startMovement() {
-	interval = setInterval(move,100);
+	interval = setInterval(move,300);
 }
 
 function initiate() {
@@ -130,7 +143,9 @@ function initiate() {
 	//Add player sprite
 	addSprite(".11-11", sprites["head39"]);
 	$(document).keydown(function(e) {
-		turn(e.which);
+		if(e.which > 36 && e.which < 41) {
+			turn(e.which);
+		}
 	});
 	startMovement();
 	spawnFood();
@@ -149,12 +164,3 @@ $("button").on("click",start);
 
 initiate();
 
-/*
-var Snake = {
-	"x": "11",
-	"y": "11",
-	"addTail": function() {},
-	"position": function() {
-		return (this.x + "-" + this.y) // this might refer to function and not object
-		},
-}*/
