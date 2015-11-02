@@ -26,18 +26,30 @@ body {
 
 .container {
 	padding-top: 5px;
-	width: 421px;
+	width: 420px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 421px;
+	height: 395px;
 	color: yellow;
+	border: 1px solid #000;
 }
 
 #hud {
-	box-sizing: border-box;
+	background-color: rgba(0,0,0,.6);
 	height: 50px;
-	border: 1px solid black;
-	margin: 10px;
+	width: 422px;
+	margin: 10px auto 0 auto;
+	box-sizing: border-box;
+	border: 5px double black;
+}
+
+#stats {
+	background-color: rgba(255,255,255,.65);
+	height: 50px;
+	width: 422px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	border: 5px double black;
 }
 
 img {
