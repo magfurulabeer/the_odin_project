@@ -3,18 +3,21 @@ var x = 11;
 var y = 11;
 var interval;
 var sprites = {
-	"head38": "<img id='head' src='images/headup.png'>",
-	"head40": "<img id='head' src='images/headdown.png'>",
-	"head37": "<img id='head' src='images/headleft.png'>",
-	"head39": "<img id='head' src='images/headright.png'>",
-	"dead": "<img id='head' src='images/dead.png'>",
-	"redbird": "<img id='head' src='images/redbird.png'>",
-	"orangebird": "<img id='head' src='images/orangebird.png'>",
-	"greenbird": "<img id='head' src='images/greenbird.png'>",
-	"bluebird": "<img id='head' src='images/bluebird.png'>"
+	// Fix ID's
+	"head38": "<img id='headup' class='head' src='images/headup.png'>",
+	"head40": "<img id='headdown' class='head' src='images/headdown.png'>",
+	"head37": "<img id='headleft' class='head' src='images/headleft.png'>",
+	"head39": "<img id='headright' class='head' src='images/headright.png'>",
+	"dead": "<img id='dead' src='images/dead.png'>",
+	"redbird": "<img id='red' class='food' src='images/redbird.png'>",
+	"orangebird": "<img id='orange' class='food' src='images/orangebird.png'>",
+	"greenbird": "<img id='green' class='food' src='images/greenbird.png'>",
+	"bluebird": "<img id='blue' class='food' src='images/bluebird.png'>",
+	"tailbig": "<img id='tailbig' class='tail' src='images/tailbig.png'>",
+	"tailsmall": "<img id='tailsmall' class='tail' src='images/tailsmall.png'>"
 }
 
-var snake = ["11-11"]
+var tail = [];
 
 function createGrid() {
 	for(var i = 1; i < 22; i++) {
@@ -33,8 +36,13 @@ function moveSprite(a,b) {
 	if(collisionCheck(a,b)) {
 		gameOver();
 	} else {
-		eat(a,b);
-		$("." + x + "-" + y).find("img").appendTo($("." + a + "-" + b));
+		if(eat(a,b)) {
+			$("." + x + "-" + y).find("img").appendTo($("." + a + "-" + b));
+			addTail(x,y);
+		} else {
+			$("." + x + "-" + y).find("img").appendTo($("." + a + "-" + b));
+		}
+		
 		$("." + x + "-" + y).css("bottom","0px");
 		$("." + a + "-" + b).css("bottom","2px");
 	}
@@ -57,16 +65,19 @@ function spawnFood() {
 function eat(a,b) {
 	var coord = "." + a + "-" + b;
 	if($(coord).children().length > 0) {
-		$(coord).find("img").remove();
+		$(coord).find(".food").remove();
 		spawnFood();
+		return true;
 	}
+	else false;
 
 }
 
 function turn(key) {
-	direction = key;
-	$("." + x + "-" + y).find("img").replaceWith(sprites["head"+direction]);
-
+	if(36 < key < 41) {
+		direction = key;
+		$("." + x + "-" + y).find("img").replaceWith(sprites["head"+direction]);
+	}
 }
 
 function move() {
@@ -88,6 +99,11 @@ function move() {
 			x++;
 			break;
 	}
+}
+
+function addTail(a,b) {
+	addSprite("."+a+"-"+b, sprites.tailbig);
+	tail.push(a+"-"+b);
 }
 
 function collisionCheck(a,b) {
@@ -132,3 +148,13 @@ $("button").on("click",start);
 */
 
 initiate();
+
+/*
+var Snake = {
+	"x": "11",
+	"y": "11",
+	"addTail": function() {},
+	"position": function() {
+		return (this.x + "-" + this.y) // this might refer to function and not object
+		},
+}*/
