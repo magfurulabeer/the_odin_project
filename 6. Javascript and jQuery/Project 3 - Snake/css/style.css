@@ -256,6 +256,7 @@ p {
 	background-image: url(../images/emberbr.png);
 }
 
+
 .eviltl {
 	background-image: url(../images/eviltl.png);
 }
@@ -267,4 +268,18 @@ p {
 }
 .evilbr {
 	background-image: url(../images/evilbr.png);
+}
+
+
+.deadtl {
+	background-image: url(../images/deadtl.png);
+}
+.deadtr {
+	background-image: url(../images/deadtr.png);
+}
+.deadbl {
+	background-image: url(../images/deadbl.png);
+}
+.deadbr {
+	background-image: url(../images/deadbr.png);
 }
