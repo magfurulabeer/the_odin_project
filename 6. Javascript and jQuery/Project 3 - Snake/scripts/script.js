@@ -1,9 +1,11 @@
-var direction = 39;
+var newGame = true;
+var speed;
+var direction;
 var lastDirection;
-var x = 11;
-var y = 11;
+var x;
+var y;
 var interval;
-var score = 0;
+var score;
 var sprites = {
 	"head38": "<img id='headup' class='head' src='images/headup.png'>",
 	"head40": "<img id='headdown' class='head' src='images/headdown.png'>",
@@ -14,11 +16,10 @@ var sprites = {
 	"orangebird": "<img id='orange' class='food' src='images/orangebird.png'>",
 	"greenbird": "<img id='green' class='food' src='images/greenbird.png'>",
 	"bluebird": "<img id='blue' class='food' src='images/bluebird.png'>",
-	"tailbig": "<img id='tailbig' class='tail' src='images/tailbig.png'>",
-	"tailsmall": "<img id='tailsmall' class='tail' src='images/tailsmall.png'>" // Not used atm
+	"bunny": "<img id='bunny' class='food' src='images/bunny.png'>",
+	"tail": "<img id='tail' class='tail' src='images/tail.png'>"
 }
-
-var tail = [];
+var tail;
 
 function createGrid() {
 	for(var i = 1; i < 22; i++) {
@@ -26,6 +27,10 @@ function createGrid() {
 			$("#screen").find(".container").append("<div class='square " +i+"-"+j+ "'></div>");
 		}}
 	}
+}
+
+function displayScore() {
+	$("#score").html(score);
 }
 
 function addSprite(tile, str) {
@@ -59,7 +64,7 @@ function spawnFood() {
 		var b = randomCoordinate();
 		if(a !== x && b !== y) {
 			var coordinate = "." + a + '-' + b;
-			addSprite(coordinate, sprites.redbird);
+			addSprite(coordinate, sprites.bunny);
 			blocked = true;
 		}	 
 	}
@@ -69,10 +74,21 @@ function eat(a,b) {
 	var coord = "." + a + "-" + b;
 	if($(coord).children().length > 0) {
 		$(coord).find(".food").remove();
+		score = score + 10;
+		displayScore();
 		spawnFood();
+		changeSpeed(10);
 		return true;
 	}
 	return false;
+}
+
+function changeSpeed(num) {
+	if(speed > 50) {
+		speed = speed - num;
+		clearInterval(interval);
+		startMovement();
+	}
 }
 
 function turn(key) {	
@@ -110,7 +126,7 @@ function move() {
 }
 
 function addTail(a,b) {
-	addSprite("."+a+"-"+b, sprites.tailbig);
+	addSprite("."+a+"-"+b, sprites.tail);
 	tail.unshift(a+"-"+b);
 }
 
@@ -132,11 +148,23 @@ function gameOver() {
 	$(".container").css("opacity",.5)
 }
 
+
 function startMovement() {
-	interval = setInterval(move,300);
+	interval = setInterval(move,speed);
+}
+
+function setData() {
+	speed = 300;
+	direction = 39;
+	x = 11;
+	y = 11;
+	score = 0;
+	tail = [];
 }
 
 function initiate() {
+	restart();
+	setData();
 	createGrid();
 	makeBackground();
 	makeCenterPiece();
@@ -149,18 +177,27 @@ function initiate() {
 	});
 	startMovement();
 	spawnFood();
+	newGame = false;
 }
 
-/*
+
 function start() {
-	$("button").off();
+	$(".start").off(); // Just in case, not sure.
 	$(".container").children().remove();
 	$(".container").removeClass("splash");
-	//$(".container").css("background-image","url(../images/green.png)")
 	initiate();
 }
-$("button").on("click",start);
-*/
 
-initiate();
+function restart() {
+	if(!newGame) {
+		clearInterval(interval);
+		$(".square").remove();
+	}
+}	
+
+$(".start").on("click",start);
+$(".restart").on("click",initiate);
+
+
+
 
