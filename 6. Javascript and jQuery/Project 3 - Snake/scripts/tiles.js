@@ -45,6 +45,10 @@ function randomCoordinate() {
 	return Math.floor(Math.random() * (21 - 1 + 1)) + 1;
 }
 
+function addTrees() {
+	
+}
+
 function makeCenterPiece() {
 	setTile(".9-10","dirttop");
 	setTile(".9-11","dirttop");

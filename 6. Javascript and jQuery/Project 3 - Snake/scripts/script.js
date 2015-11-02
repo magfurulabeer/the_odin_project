@@ -1,4 +1,6 @@
 var newGame = true;
+var cause;
+var potential;
 var speed;
 var direction;
 var lastDirection;
@@ -6,6 +8,7 @@ var x;
 var y;
 var interval;
 var score;
+var firstPrey;
 var sprites = {
 	"head38": "<img id='headup' class='head' src='images/headup.png'>",
 	"head40": "<img id='headdown' class='head' src='images/headdown.png'>",
@@ -20,6 +23,33 @@ var sprites = {
 	"tail": "<img id='tail' class='tail' src='images/tail.png'>"
 }
 var tail;
+var Achievement = {
+	"achievements": [],
+	"list": {},
+	create: function(title, description) {
+
+		Achievement.list[title] = description;
+	}
+}
+
+function createAchievements() {
+	Achievement.create("Chasing Tail", "Die from eating your own tail.");
+	Achievement.create("Tree Hugger", "Die from crashing into a tree");
+	Achievement.create("Where no man has gone before", "Die from going out of bounds");
+	Achievement.create("Super Sonic", "Max out your speed");
+	Achievement.create("Early Bird", "First prey is a bird");
+}
+
+function giveAchievement(name) {
+	Achievement.achievements.push(Achievement.list[name]);
+	displayAchievement(name);
+}
+
+function displayAchievement(name) {
+	$("#title").html(name).delay(3000).fadeOut(2000);
+}
+
+
 
 function createGrid() {
 	for(var i = 1; i < 22; i++) {
@@ -64,7 +94,7 @@ function spawnFood() {
 		var b = randomCoordinate();
 		if(a !== x && b !== y) {
 			var coordinate = "." + a + '-' + b;
-			addSprite(coordinate, sprites.bunny);
+			addSprite(coordinate, sprites.redbird);
 			blocked = true;
 		}	 
 	}
@@ -73,6 +103,16 @@ function spawnFood() {
 function eat(a,b) {
 	var coord = "." + a + "-" + b;
 	if($(coord).children().length > 0) {
+		if(tail.length === 0) {
+			firstPrey = $(coord).find(".food").attr("id");
+			switch(firstPrey) {
+				case "red":
+				case "blue":
+				case "green":
+				case "orange":
+					giveAchievement("Early Bird");
+			}
+		}
 		$(coord).find(".food").remove();
 		score = score + 10;
 		displayScore();
@@ -133,16 +173,19 @@ function addTail(a,b) {
 function collisionCheck(a,b) {
 	// If out of bound, return true
 	if(a < 1 || a > 21 || b < 1 || b > 21) {
+		potential = "Out of bounds"
 		return true;
 	}
 	// If tail, return true
 	if($("."+a+"-"+b).has(".tail").length > 0) {
+		potential = "Eat tail"
 		return true;
 	}
 	return false;
 }
 
 function gameOver() {
+	cause = potential;
 	clearInterval(interval);
 	$("." + x + "-" + y).find(".head").replaceWith(sprites["dead"]);
 	$(".container").css("opacity",.5)
@@ -169,6 +212,7 @@ function initiate() {
 	createGrid();
 	makeBackground();
 	makeCenterPiece();
+	createAchievements();
 	//Add player sprite
 	addSprite(".11-11", sprites["head39"]);
 	$(document).keydown(function(e) {

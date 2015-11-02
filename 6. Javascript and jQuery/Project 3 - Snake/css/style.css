@@ -40,6 +40,7 @@ body {
 	margin-top: 30px;
 	color: #fff;
 	padding: 3px 5px;
+	position: relative;
 }
 
 #stats {
@@ -182,6 +183,14 @@ h1 {
 h3 {
 	font-family: 'vitaminregular', sans-serif;
 }
+
+#title {
+	font-family: 'vitaminregular', sans-serif;
+	position: absolute;
+	
+	bottom: 7px;
+}
+
 
 .start {
 	font-family: 'vitaminregular', sans-serif;
