@@ -56,7 +56,7 @@ function addTree() {
 		var br = "." + (treeX+1) + "-" + (treeY+1);
 		if((treeX < 8 || treeX > 14) && (treeY < 8 || treeY > 14)) {
 			if(isEmpty(tl) && isEmpty(tr) && isEmpty(bl) && isEmpty(br)) {
-				var type = Math.floor(Math.random() * (5 - 1)) + 1;
+				var type = Math.floor(Math.random() * (6 - 1)) + 1;
 				switch(type) {
 					case 1: 
 						treeSprite(tl,"treetl");
@@ -81,6 +81,12 @@ function addTree() {
 						treeSprite(tr,"deadtr");
 						treeSprite(bl,"deadbl");
 						treeSprite(br,"deadbr");
+						break;
+					case 5:
+						treeSprite(tl,"mushtl");
+						treeSprite(tr,"mushtr");
+						treeSprite(bl,"mushbl");
+						treeSprite(br,"mushbr");
 						break;
 				}
 				valid = true;
