@@ -1,6 +1,5 @@
 var newGame = true;
 var cause;
-var potential;
 var speed;
 var direction;
 var lastDirection;
@@ -173,20 +172,26 @@ function addTail(a,b) {
 function collisionCheck(a,b) {
 	// If out of bound, return true
 	if(a < 1 || a > 21 || b < 1 || b > 21) {
-		potential = "Out of bounds"
+		cause = "Out of bounds"
 		return true;
 	}
 	// If tail, return true
 	if($("."+a+"-"+b).has(".tail").length > 0) {
-		potential = "Eat tail"
+		cause = "Eat tail"
 		return true;
 	}
 	return false;
 }
 
 function gameOver() {
-	cause = potential;
+	if(cause === "Out of bounds") {
+		giveAchievement("Where no man has gone before");
+	}
+	if(cause === "Eat tail") {
+		giveAchievement("Chasing Tail");
+	}
 	clearInterval(interval);
+	$(".tail").remove();
 	$("." + x + "-" + y).find(".head").replaceWith(sprites["dead"]);
 	$(".container").css("opacity",.5)
 }
@@ -237,6 +242,7 @@ function restart() {
 	if(!newGame) {
 		clearInterval(interval);
 		$(".square").remove();
+		$(".container").css("opacity",1)
 	}
 }	
 
