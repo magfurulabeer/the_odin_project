@@ -13,8 +13,8 @@ function makeBackground() {
 		square = square.next();		
 		var newClass = giveBackground();
 		square.addClass(newClass);
-
 	}
+	addTrees();
 }
 
 function giveBackground() {
@@ -31,7 +31,7 @@ function giveBackground() {
 		newClass = "pinkflower1";
 	} else if (num < 56) {
 		newClass = "pinkflower2";
-	} else if (num < 577) {
+	} else if (num < 57) {
 		newClass = "grassy";
 	}
 	return newClass;
@@ -45,8 +45,44 @@ function randomCoordinate() {
 	return Math.floor(Math.random() * (21 - 1 + 1)) + 1;
 }
 
+function addTree() {
+	var valid = false;
+	while(!valid) {
+		var treeX = Math.floor(Math.random() * (21 - 1)) + 1;
+		var treeY = Math.floor(Math.random() * (21 - 1)) + 1;
+		var tl = "." + treeX + "-" + treeY;
+		var bl = "." + (treeX+1) + "-" + treeY;
+		var tr = "." + treeX + "-" + (treeY+1);
+		var br = "." + (treeX+1) + "-" + (treeY+1);
+		if((treeX < 8 || treeX > 14) && (treeY < 8 || treeY > 14)) {
+			if(isEmpty(tl) && isEmpty(tr) && isEmpty(bl) && isEmpty(br)) {
+				treeSprite(tl,"treetl");
+				treeSprite(tr,"treetr");
+				treeSprite(bl,"treebl");
+				treeSprite(br,"treebr");
+				valid = true;
+			}		
+		}
+	}
+}
+
+function isEmpty(coord) {
+	if($(coord).children().length > 0) {
+		return false;
+	}
+	return true;
+}
+
 function addTrees() {
-	
+	var num = Math.floor(Math.random() * (6 - 1)) + 1;
+	for(var i = 0; i < num; i++) {
+		addTree();
+	}
+}
+
+function treeSprite(pos, pic) {
+	setTile(pos,pic);
+	$(pos).append("<div class='tree'></div>")
 }
 
 function makeCenterPiece() {

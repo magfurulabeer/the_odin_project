@@ -2,6 +2,9 @@
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	/*  For Firefox compatibility  */
+	line-height: 1;
+	padding-top: 2px;
 }
 
 body {
@@ -10,7 +13,7 @@ body {
 
 .square {
 	width: 20px;
-	height: 20px;
+	height: 22px; /* For whatever reason, 22px makes this a square*/
 	/*border-left: 1px solid rgba(0,0,0,.5);
 	border-bottom: 1px solid rgba(0,0,0,.5);*/
 	display: inline-block;
@@ -29,7 +32,7 @@ body {
 	width: 420px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 395px;
+	height: 415px;
 	color: yellow;
 	border: 1px solid #000;
 }
@@ -41,6 +44,7 @@ body {
 	color: #fff;
 	padding: 3px 5px;
 	position: relative;
+	top: 2px;
 }
 
 #stats {
@@ -84,6 +88,8 @@ body {
 img {
 	max-width:100%;
 	max-height:100%;
+	position: relative;
+	bottom: 3px;
 }
 
 .green {
@@ -154,13 +160,22 @@ img {
 .yellowflower2 {
 	background-image: url(../images/yellowflower2.png);
 }
-
+.treetl {
+	background-image: url(../images/treetl.png);
+}
+.treetr {
+	background-image: url(../images/treetr.png);
+}
+.treebl {
+	background-image: url(../images/treebl.png);
+}
+.treebr {
+	background-image: url(../images/treebr.png);
+}
 
 .tile {
 	width: 20px;
 	height: 20px;
-	/*border-left: 1px solid rgba(0,0,0,.0);
-	border-bottom: 1px solid rgba(0,0,0,.0);*/
 	display: inline-block;
 	box-sizing: border-box;
 	margin-top: -5px;
@@ -216,3 +231,12 @@ p {
 .hidden {
 	display: none;
 }
+
+
+
+@-moz-document url-prefix() {
+    .container {
+    	height: 405px;
+    }
+}
+
