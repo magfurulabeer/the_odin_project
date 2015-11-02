@@ -191,6 +191,9 @@ h3 {
 	bottom: 7px;
 }
 
+p {
+	text-align: center;
+}
 
 .start {
 	font-family: 'vitaminregular', sans-serif;
