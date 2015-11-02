@@ -255,3 +255,16 @@ p {
 .emberbr {
 	background-image: url(../images/emberbr.png);
 }
+
+.eviltl {
+	background-image: url(../images/eviltl.png);
+}
+.eviltr {
+	background-image: url(../images/eviltr.png);
+}
+.evilbl {
+	background-image: url(../images/evilbl.png);
+}
+.evilbr {
+	background-image: url(../images/evilbr.png);
+}
