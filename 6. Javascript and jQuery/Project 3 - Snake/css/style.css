@@ -121,7 +121,8 @@ h3 {
 }
 
 #title {
-	font-family: 'vitaminregular', sans-serif;
+	/*font-family: 'vitaminregular', sans-serif;*/
+	font-family: Helvetica;
 	position: absolute;
 	
 	bottom: 7px;
@@ -147,10 +148,6 @@ p {
 	color: #000;
 	position: relative;
 	bottom: 132px;
-}
-
-.hidden {
-	display: none;
 }
 
 

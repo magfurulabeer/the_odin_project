@@ -37,14 +37,19 @@ function createAchievements() {
 	Achievement.create("Where no man has gone before", "Die from going out of bounds");
 	Achievement.create("Super Sonic", "Max out your speed");
 	Achievement.create("Early Bird", "First prey is a bird");
+	Achievement.create("My anaconda don't", "Reach length of 20");
+	Achievement.create("Got the munchies", "Eat 10 prey");
 }
 
 function giveAchievement(name) {
 	Achievement.achievements.push(Achievement.list[name]);
 	displayAchievement(name);
+	console.log(name);
 }
 
 function displayAchievement(name) {
+	$("#title").html("");
+	$("#title").css("display","block")
 	$("#title").html(name).delay(3000).fadeOut(2000);
 }
 
@@ -168,6 +173,12 @@ function move() {
 function addTail(a,b) {
 	addSprite("."+a+"-"+b, sprites.tail);
 	tail.unshift(a+"-"+b);
+	if(tail.length === 10) {
+		giveAchievement("Got the munchies");
+	}
+	if(tail.length === 20) {
+		giveAchievement("My anaconda don't");
+	}
 }
 
 function collisionCheck(a,b) {
@@ -178,22 +189,25 @@ function collisionCheck(a,b) {
 	}
 	// If tail, return true
 	if($("."+a+"-"+b).has(".tail").length > 0) {
-		cause = "Eat tail"
+		cause = "Eat tail";
 		return true;
 	}
 	// If tree, return true
 	if($("."+a+"-"+b).has(".tree").length > 0) {
-		cause = "Crash into tree"
+		cause = "Hit a tree";
 		return true;
 	}
 	return false;
 }
 
 function gameOver() {
-	if(cause === "Out of bounds") {
+	if(cause == "Out of bounds") {
 		giveAchievement("Where no man has gone before");
 	}
-	if(cause === "Eat tail") {
+	if(cause == "Hit a tree") {
+		giveAchievement("Treehugger");
+	}
+	if(cause == "Eat tail") {
 		giveAchievement("Chasing Tail");
 	}
 	clearInterval(interval);
