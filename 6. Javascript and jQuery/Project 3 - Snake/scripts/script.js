@@ -180,6 +180,11 @@ function collisionCheck(a,b) {
 		cause = "Eat tail"
 		return true;
 	}
+	// If tree, return true
+	if($("."+a+"-"+b).has(".tree").length > 0) {
+		cause = "Crash into tree"
+		return true;
+	}
 	return false;
 }
 
