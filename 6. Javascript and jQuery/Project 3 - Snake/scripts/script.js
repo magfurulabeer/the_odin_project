@@ -165,6 +165,7 @@ function setData() {
 function initiate() {
 	restart();
 	setData();
+	displayScore();
 	createGrid();
 	makeBackground();
 	makeCenterPiece();
