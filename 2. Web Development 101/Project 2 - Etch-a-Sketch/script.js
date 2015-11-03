@@ -76,6 +76,7 @@ function imFeelingLucky() {
 		}
 	} else {
 		var num = Math.random();
+		console.log(num);
 		if(num < .04) {
 			$("#sketch").css("background-color", "black");
 		} else if(num < .08) {
@@ -98,8 +99,10 @@ function imFeelingLucky() {
 			$(".circle").css("background-color", "black");
 		} else if(num < .44) {
 			$(".circle").css("background-color", "white");
-		} else if(num < .48) {
+		} else if(num < .46) {
 			$(".panel").css("background-color", "red");
+		} else if(num < .48) {
+			$(".panel").css("background-color", "white");
 		} else if(num < .52) {
 			$(".circle").css("background-color", "white");
 		}  else if(num < .56) {
