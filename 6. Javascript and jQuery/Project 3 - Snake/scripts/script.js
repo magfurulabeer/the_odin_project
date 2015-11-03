@@ -42,7 +42,7 @@ function createAchievements() {
 }
 
 function giveAchievement(name) {
-	Achievement.achievements.push(Achievement.list[name]);
+	Achievement.achievements.push(name);
 	displayAchievement(name);
 	console.log(name);
 }
@@ -53,7 +53,37 @@ function displayAchievement(name) {
 	$("#title").html(name).delay(3000).fadeOut(2000);
 }
 
+function achievementButton() {
+	var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
+	$("#title").html("");
+	$("#hud").append(button);
+}
 
+function showAchievements() {
+	if($(".square").length > 0) {
+		$(".square").remove();
+		$(".container").css("opacity","1");
+		$(".container").css("background-color","#fff");
+		$(".container").css("overflow-y","scroll");
+		$(".container").css("overflow-x","hidden");
+		$(".container").append("<h1 class='achievement'>Achievements</h1>");
+		for(var i = 0; i < Achievement.achievements.length; i++) {
+			var name = Achievement.achievements[i];
+			var desc = Achievement.list[name];
+			$(".container").append(formatAchievement(name, desc));
+		}
+	}
+}
+
+function removeAchievements() {
+	$(".container").css("opacity","1");
+	$(".container").css("overflow-y","hidden");
+	$(".container").children().remove();
+}
+
+function formatAchievement(k,v) {
+	return "<h3 class='achievement'>" + k + "</h3><p class='achievement'>&bull; " + v + "</p>";
+}
 
 function createGrid() {
 	for(var i = 1; i < 22; i++) {
@@ -213,7 +243,12 @@ function gameOver() {
 	clearInterval(interval);
 	$(".tail").remove();
 	$("." + x + "-" + y).find(".head").replaceWith(sprites["dead"]);
-	$(".container").css("opacity",.5)
+	$(".container").css("opacity",.5);
+	var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
+	
+	$("#hud").append(button);
+	$(".list").hide().delay(5000).fadeIn(0);
+	$(".list").on("click",showAchievements);
 }
 
 
@@ -222,7 +257,7 @@ function startMovement() {
 }
 
 function setData() {
-	speed = 300;
+	speed = 100;
 	direction = 39;
 	x = 11;
 	y = 11;
@@ -261,6 +296,8 @@ function start() {
 
 function restart() {
 	if(!newGame) {
+		$(".list").off().remove();
+		removeAchievements();
 		clearInterval(interval);
 		$(".square").remove();
 		$(".container").css("opacity",1)
