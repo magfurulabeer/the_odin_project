@@ -10,5 +10,5 @@ A Etch-A-Sketch and normal Sketchpad hybrid I made for The Odin Project.
 * The error message can be clicked on to have it fade out
 * You have an option to keep a trail or not (No trail means the colors stay while trail means they trail behind the mouse)
 * You can reset your grid by pressing the white circle buttons on the bottom corners of the Sketch-A-Etch
-* I'm Feeling Lucky button is changes the color of a random element on the page to a random color
+* I'm Feeling Lucky button changes the color of a random element on the page to a random color
 * Easter Eggs: At the moment, there is only one Easter Egg Set Piece which is triggered when there is a 8x8 grid and the I'm Feeling Lucky button is pressed
