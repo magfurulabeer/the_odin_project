@@ -1,3 +1,10 @@
+var theme = new Audio('sounds/theme.mp3'); 
+var gameovertheme = new Audio('sounds/gameover.mp3'); 
+var eatsound = new Audio('sounds/eat.wav'); 
+var button = new Audio('sounds/button.wav'); 
+var dead = new Audio('sounds/dead.wav'); 
+var movesound = new Audio('sounds/movesound.wav'); 
+
 var newGame = true;
 var cause;
 var speed;
@@ -31,6 +38,7 @@ var Achievement = {
 	}
 }
 
+
 function createAchievements() {
 	Achievement.create("Chasing Tail", "Die from eating your own tail.");
 	Achievement.create("Tree Hugger", "Die from crashing into a tree");
@@ -61,6 +69,7 @@ function achievementButton() {
 
 function showAchievements() {
 	if($(".square").length > 0) {
+		gameovertheme.play()
 		$(".square").remove();
 		$(".container").css("opacity","1");
 		$(".container").css("background-color","#fff");
@@ -110,6 +119,7 @@ function moveSprite(a,b) {
 			addTail(x,y);
 		} else {
 			$("." + x + "-" + y).find(".head").appendTo($("." + a + "-" + b));
+			movesound.play();
 			if(tail.length > 0) {
 				var last = tail.pop();
 				$("."+last).find(".tail").appendTo($("." + x + "-" + y));
@@ -153,6 +163,7 @@ function eat(a,b) {
 		displayScore();
 		spawnFood();
 		changeSpeed(10);
+		eatsound.play();
 		return true;
 	}
 	return false;
@@ -245,10 +256,10 @@ function gameOver() {
 	$("." + x + "-" + y).find(".head").replaceWith(sprites["dead"]);
 	$(".container").css("opacity",.5);
 	var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
-	
 	$("#hud").append(button);
 	$(".list").hide().delay(5000).fadeIn(0);
 	$(".list").on("click",showAchievements);
+	dead.play();
 }
 
 
@@ -288,6 +299,8 @@ function initiate() {
 
 
 function start() {
+	theme.pause();
+	button.play();
 	$(".start").off(); // Just in case, not sure.
 	$(".container").children().remove();
 	$(".container").removeClass("splash");
@@ -297,6 +310,8 @@ function start() {
 
 function restart() {
 	if(!newGame) {
+		gameovertheme.pause();
+		button.play();
 		$(".list").off().remove();
 		removeAchievements();
 		clearInterval(interval);
@@ -305,6 +320,7 @@ function restart() {
 	}
 }	
 
+theme.play();
 $(".start").on("click",start);
 
 
