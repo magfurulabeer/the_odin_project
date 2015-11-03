@@ -25,6 +25,7 @@ function clearGrid() {
 	colorCode = 0;
 	$("#sketch").html("");
 	$(".square").html("");
+	$("#notrail").prop("checked",true);
 	$(".pushup").removeClass("pushup");
 	makeGrid(numrows,numcols);	
 	setScreen();
@@ -75,29 +76,59 @@ function imFeelingLucky() {
 		}
 	} else {
 		var num = Math.random();
-		if(num < .10) {
+		if(num < .04) {
 			$("#sketch").css("background-color", "black");
+		} else if(num < .08) {
+			$("#sketch").css("background-color", "white");
 		} else if(num < .12) {
 			$("#sketch").css("background-color", "white");
 		} else if(num < .16) {
-			$("#sketch").css("background-color", "white");
+			$("#outer").css("background-color", "blue");
 		} else if(num < .2) {
-			$("#outer").css("background-color", "blue");
-		} else if(num < .3) {
 			$("#outer").css("background-color", "green");
-		} else if(num < .4) {
+		} else if(num < .24) {
 			$("#outer").css("background-color", "yellow");
-		} else if(num < .5) {
+		} else if(num < .28) {
 			$("#outer").css("background-color", "orange");
-		} else if(num < .6) {
+		} else if(num < .32) {
 			$("#outer").css("background-color", "blue");
-		} else if(num < .7) {
+		} else if(num < .36) {
 			$("#outer").css("background-color", "red");
-		} else if(num < .8) {
+		} else if(num < .40) {
 			$(".circle").css("background-color", "black");
-		} else if(num < .9) {
+		} else if(num < .44) {
 			$(".circle").css("background-color", "white");
-		}
+		} else if(num < .48) {
+			$(".panel").css("background-color", "red");
+		} else if(num < .52) {
+			$(".circle").css("background-color", "white");
+		}  else if(num < .56) {
+			$(".circle").css("background-color", "red");
+		}  else if(num < .62) {
+			$(".circle").css("background-color", "blue");
+		}  else if(num < .68) {
+			$(".circle").css("background-color", "green");
+		}  else if(num < .72) {
+			$(".circle").css("background-color", "yellow");
+		}  else if(num < .76) {
+			$(".circle").css("background-color", "orange");
+		}  else if(num < .8) {
+			$(".circle").css("background-color", "black");
+		} else if(num < .84) {
+			$("#lucky").css("background-color", "rgba(91,192,222,.7)");
+		}  else if(num < .88) {
+			$("#lucky").css("background-color", "black");
+		}  else if(num < .92) {
+			$("#lucky").css("background-color", "red");
+		}  else if(num < .94) {
+			$("#lucky").css("background-color", "green");
+		}  else if(num < .96) {
+			$("#lucky").css("background-color", "blue");
+		}  else if(num < .98) {
+			$("#lucky").css("background-color", "yellow");
+		}  else if(num < 1) {
+			$("#lucky").css("background-color", "orange");
+		}  
 	}
 }
 
