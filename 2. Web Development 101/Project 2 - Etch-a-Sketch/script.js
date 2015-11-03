@@ -73,6 +73,31 @@ function imFeelingLucky() {
 			chessSet();
 			setPiece = true;
 		}
+	} else {
+		var num = Math.random();
+		if(num < .10) {
+			$("#sketch").css("background-color", "black");
+		} else if(num < .12) {
+			$("#sketch").css("background-color", "white");
+		} else if(num < .16) {
+			$("#sketch").css("background-color", "white");
+		} else if(num < .2) {
+			$("#outer").css("background-color", "blue");
+		} else if(num < .3) {
+			$("#outer").css("background-color", "green");
+		} else if(num < .4) {
+			$("#outer").css("background-color", "yellow");
+		} else if(num < .5) {
+			$("#outer").css("background-color", "orange");
+		} else if(num < .6) {
+			$("#outer").css("background-color", "blue");
+		} else if(num < .7) {
+			$("#outer").css("background-color", "red");
+		} else if(num < .8) {
+			$(".circle").css("background-color", "black");
+		} else if(num < .9) {
+			$(".circle").css("background-color", "white");
+		}
 	}
 }
 
