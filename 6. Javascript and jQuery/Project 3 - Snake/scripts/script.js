@@ -257,12 +257,13 @@ function startMovement() {
 }
 
 function setData() {
-	speed = 100;
+	speed = 300;
 	direction = 39;
 	x = 11;
 	y = 11;
 	score = 0;
 	tail = [];
+	Achievement.achievements = [];
 }
 
 function initiate() {
