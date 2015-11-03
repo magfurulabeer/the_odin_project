@@ -256,6 +256,7 @@ function start() {
 	$(".container").children().remove();
 	$(".container").removeClass("splash");
 	initiate();
+	$(".restart").on("click",initiate);
 }
 
 function restart() {
@@ -267,7 +268,7 @@ function restart() {
 }	
 
 $(".start").on("click",start);
-$(".restart").on("click",initiate);
+
 
 
 
