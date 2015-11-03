@@ -73,6 +73,8 @@ function showAchievements() {
 		$(".square").remove();
 		$(".container").css("opacity","1");
 		$(".container").css("background-color","#fff");
+		// Pattern from SubtlePatterns
+		$(".container").css("background-image","url(images/old_map.png)");
 		$(".container").css("overflow-y","scroll");
 		$(".container").css("overflow-x","hidden");
 		$(".container").append("<h1 class='achievement'>Achievements</h1>");
