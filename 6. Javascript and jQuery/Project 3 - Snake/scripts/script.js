@@ -31,7 +31,6 @@ var sprites = {
 	"bunny": "<img id='bunny' class='food' src='images/bunny.png'>",
 	"tail": "<img id='tail' class='tail' src='images/tail.png'>"
 }
-var tail;
 var Achievement = {
 	"achievements": [],
 	"list": {},
