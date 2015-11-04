@@ -11,9 +11,10 @@ body {
 	height: 100%;
 }
 
-main {
+#content {
 	height: 100%;
 	width: 100%;
+
 }
 
 /******* Navbar *******/
@@ -36,6 +37,14 @@ nav.navbar.navbar-default {
 	color: rgba(255,255,255,.8);
 }
 
+.navbar-default .navbar-nav>li>a:active {
+	color: rgba(255,255,255,.8);
+}
+
+.navbar-default .navbar-nav>li>a:visited {
+	color: rgba(255,255,255,.8);
+}
+
 
 
 /******* Home Page *******/
@@ -44,11 +53,13 @@ h1.hero,h2.hero {
 	color: #fff;
 	text-align: center;
 	vertical-align: middle;
+	position: relative;
 }
 
 h1.hero {
 	font-size: 4em;
 	margin: 200px auto 0px auto;
+	left: 0;
 }
 
 h2.hero {
@@ -62,16 +73,8 @@ h2.hero {
 
 
 /******* General *******/
-
-.well {
-	margin-top: 10px;
-	background-color: rgba(255,255,255,.65);
-	margin-left: 5%;
-	margin-right: 5%;
-	padding: 1% 5%;
-	color: rgba(0,0,0,.85);
-	font-family: Helvetica, sans-serif;
-	text-align: left;
+.center {
+	text-align: center;
 }
 
 .title {
@@ -80,11 +83,63 @@ h2.hero {
 	border-bottom: 2px solid rgba(0,0,0,.85);
 }
 
+ul {
+	list-style: none;
+}
+
+/******* About *******/
+
+.page {
+	margin-top: 10px;
+	background-color: rgba(255,255,255,.75);
+	border-radius: 2px;
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 1% 5%;
+	color: rgba(0,0,0,.85);
+	font-family: 'Helvetica', sans-serif;
+	text-align: left;
+}
+
+.page h1 {
+	font-family: 'Marck Script', cursive;
+}
+
+/******* Menu *******/
+.menu{
+	margin-top: 10px;
+	background-image: url(../images/fancy_deboss.png);
+	border-radius: 2px;
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 1% 5%;
+	color: rgba(0,0,0,.85);
+	font-family: 'Radley', serif;
+	text-align: left;
+}
+
+.menu li {
+	display: block;
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.menu li h4 {
+	margin: 0;
+}
+
+.price {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
 /******* Media Queries *******/
 
 @media (min-width: 50px) and (max-width: 768px) {
 	.navbar-default .navbar-nav>li {
-		background-color: rgba(0,0,0,.3);
+		background-color: rgba(0,0,0,.7);
 		text-align: center;
 	}
 
