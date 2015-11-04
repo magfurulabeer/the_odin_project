@@ -8,6 +8,7 @@ var dead = new Audio('sounds/dead.wav');
 var movesound = new Audio('sounds/movesound.wav'); 
 var chirp = new Audio('sounds/bird.wav'); 
 
+var over;
 var newGame = true;
 var cause;
 var speed;
@@ -265,30 +266,33 @@ function collisionCheck(a,b) {
 }
 
 function gameOver() {
-	if(cause == "Out of bounds") {
-		giveAchievement("Where no man has gone before");
+	if(!over) {
+		if(cause == "Out of bounds") {
+			giveAchievement("Where no man has gone before");
+		}
+		if(cause == "Hit a tree") {
+			giveAchievement("Treehugger");
+		}
+		if(cause == "Eat tail") {
+			giveAchievement("Chasing Tail");
+		}
+		if(cause == "Hit a slider") {
+			giveAchievement("Slice and dice");
+		}
+		clearInterval(interval);
+		$(".tail").remove();
+		deathAnimation();
+		$(".container").css("opacity",.5);
+		var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
+		$("#hud").append(button);
+		if($(".list").length > 1) { // Firefox occassionally appends 2 buttons
+			$(".list").last().remove();
+		}
+		$(".list").hide().delay(5000).fadeIn(0);
+		$(".list").on("click",showAchievements);
+		dead.play();
+		over = true;
 	}
-	if(cause == "Hit a tree") {
-		giveAchievement("Treehugger");
-	}
-	if(cause == "Eat tail") {
-		giveAchievement("Chasing Tail");
-	}
-	if(cause == "Hit a slider") {
-		giveAchievement("Slice and dice");
-	}
-	clearInterval(interval);
-	$(".tail").remove();
-	deathAnimation();
-	$(".container").css("opacity",.5);
-	var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
-	$("#hud").append(button);
-	if($(".list").length > 1) { // Firefox occassionally appends 2 buttons
-		$(".list").last().remove();
-	}
-	$(".list").hide().delay(5000).fadeIn(0);
-	$(".list").on("click",showAchievements);
-	dead.play();
 }
 
 function deathAnimation() {	
@@ -324,6 +328,7 @@ function setData() {
 	tail = [];
 	Achievement.achievements = [];
 	slideronmap = false;
+	over = false;
 }
 
 function initiate() {

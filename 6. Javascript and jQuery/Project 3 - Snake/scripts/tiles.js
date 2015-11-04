@@ -215,20 +215,28 @@ function sliderMovement() {
 				removeTree($(br));
 			}
 			if($(tl).children(".head").length > 0) {
-				cause = "Hit a slider";
-				gameOver();
+				if(!over) {
+					cause = "Hit a slider";
+					gameOver();
+				}
 			}
 			if($(tr).children(".head").length > 0) {
-				cause = "Hit a slider";
-				gameOver();
+				if(!over) {
+					cause = "Hit a slider";
+					gameOver();
+				}
 			}
 			if($(bl).children(".head").length > 0) {
-				cause = "Hit a slider";
-				gameOver();
+				if(!over) {
+					cause = "Hit a slider";
+					gameOver();
+				}
 			}
 			if($(br).children(".head").length > 0) {
-				cause = "Hit a slider";
-				gameOver();
+				if(!over) {
+					cause = "Hit a slider";
+					gameOver();
+				}
 			}
 			if($(tl).children(".bird").length > 0) {
 				chirp.play();
