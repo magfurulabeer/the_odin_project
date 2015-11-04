@@ -144,40 +144,40 @@ function sliderMovement() {
 
 		function moveRight() {
 			destroyOnImpact();
-			$(tr).find(".slider").appendTo($("." + sliderX + "-" + (sliderY+2)));
-			$(br).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY+2)));
-			$(tl).find(".slider").appendTo($("." + sliderX + "-" + (sliderY+1)));
-			$(bl).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY+1)));
+			$(tr).find(".slider").prependTo($("." + sliderX + "-" + (sliderY+2)));
+			$(br).find(".slider").prependTo($("." + (sliderX+1) + "-" + (sliderY+2)));
+			$(tl).find(".slider").prependTo($("." + sliderX + "-" + (sliderY+1)));
+			$(bl).find(".slider").prependTo($("." + (sliderX+1) + "-" + (sliderY+1)));
 			sliderY++;
 			newDirection();
 		}
 
 		function moveLeft() {
 			destroyOnImpact();
-			$(tl).find(".slider").appendTo($("." + sliderX + "-" + (sliderY-1)));
-			$(bl).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY-1)));
-			$(tr).find(".slider").appendTo($("." + sliderX + "-" + (sliderY)));
-			$(br).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY)));
+			$(tl).find(".slider").prependTo($("." + sliderX + "-" + (sliderY-1)));
+			$(bl).find(".slider").prependTo($("." + (sliderX+1) + "-" + (sliderY-1)));
+			$(tr).find(".slider").prependTo($("." + sliderX + "-" + (sliderY)));
+			$(br).find(".slider").prependTo($("." + (sliderX+1) + "-" + (sliderY)));
 			sliderY--;
 			newDirection();
 		}
 
 		function moveDown() {
 			destroyOnImpact();
-			$(bl).find(".slider").appendTo($("." + (sliderX+2) + "-" + (sliderY)));
-			$(tl).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY)));
-			$(br).find(".slider").appendTo($("." + (sliderX+2) + "-" + (sliderY+1)));
-			$(tr).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY+1)));	
+			$(bl).find(".slider").prependTo($("." + (sliderX+2) + "-" + (sliderY)));
+			$(tl).find(".slider").prependTo($("." + (sliderX+1) + "-" + (sliderY)));
+			$(br).find(".slider").prependTo($("." + (sliderX+2) + "-" + (sliderY+1)));
+			$(tr).find(".slider").prependTo($("." + (sliderX+1) + "-" + (sliderY+1)));	
 			sliderX++;
 			newDirection();
 		}
 
 		function moveUp() {
 			destroyOnImpact();
-			$(tl).find(".slider").appendTo($("." + (sliderX-1) + "-" + (sliderY)));
-			$(bl).find(".slider").appendTo($("." + (sliderX) + "-" + (sliderY)));
-			$(tr).find(".slider").appendTo($("." + (sliderX-1) + "-" + (sliderY+1)));	
-			$(br).find(".slider").appendTo($("." + (sliderX) + "-" + (sliderY+1)));
+			$(tl).find(".slider").prependTo($("." + (sliderX-1) + "-" + (sliderY)));
+			$(bl).find(".slider").prependTo($("." + (sliderX) + "-" + (sliderY)));
+			$(tr).find(".slider").prependTo($("." + (sliderX-1) + "-" + (sliderY+1)));	
+			$(br).find(".slider").prependTo($("." + (sliderX) + "-" + (sliderY+1)));
 			sliderX--;
 			newDirection();
 		}
@@ -214,7 +214,49 @@ function sliderMovement() {
 				razeTree.play();
 				removeTree($(br));
 			}
+			if($(tl).children(".head").length > 0) {
+				cause = "Hit a slider";
+				gameOver();
+			}
+			if($(tr).children(".head").length > 0) {
+				cause = "Hit a slider";
+				gameOver();
+			}
+			if($(bl).children(".head").length > 0) {
+				cause = "Hit a slider";
+				gameOver();
+			}
+			if($(br).children(".head").length > 0) {
+				cause = "Hit a slider";
+				gameOver();
+			}
+			if($(tl).children(".bird").length > 0) {
+				chirp.play();
+			}
+			if($(tr).children(".bird").length > 0) {
+				chirp.play();
+			}
+			if($(bl).children(".bird").length > 0) {
+				chirp.play();
+			}
+			if($(br).children(".bird").length > 0) {
+				chirp.play();
+			}
 		}
+}
+
+function removeFood(coord) {
+	coord.find(".food").remove();
+	var blocked = false;
+	while(!blocked) {
+		var a = Math.floor(Math.random() * (21 - 1 + 1)) + 1; // randomCoordinate kept giving
+		var b = Math.floor(Math.random() * (21 - 1 + 1)) + 1; // the same coordinates
+		if(isEmpty("."+a+"-"+b)) {
+			var coordinate = "." + a + '-' + b;
+			addSprite(coordinate, sprites.redbird);
+			blocked = true;
+		}	 
+	}
 }
 
 function removeTree(coord) {

@@ -1,9 +1,12 @@
 var theme = new Audio('sounds/theme.mp3'); 
+theme.loop = true;
 var gameovertheme = new Audio('sounds/gameover.mp3'); 
+gameovertheme.loop = true;
 var eatsound = new Audio('sounds/eat.wav'); 
 var button = new Audio('sounds/button.wav'); 
 var dead = new Audio('sounds/dead.wav'); 
 var movesound = new Audio('sounds/movesound.wav'); 
+var chirp = new Audio('sounds/bird.wav'); 
 
 var newGame = true;
 var cause;
@@ -21,10 +24,10 @@ var sprites = {
 	"head37": "<img id='headleft' class='head' src='images/headleft.png'>",
 	"head39": "<img id='headright' class='head' src='images/headright.png'>",
 	"dead": "<img id='dead' src='images/dead.png'>",
-	"redbird": "<img id='red' class='food' src='images/redbird.png'>",
-	"orangebird": "<img id='orange' class='food' src='images/orangebird.png'>",
-	"greenbird": "<img id='green' class='food' src='images/greenbird.png'>",
-	"bluebird": "<img id='blue' class='food' src='images/bluebird.png'>",
+	"redbird": "<img id='red' class='food bird' src='images/redbird.png'>",
+	"orangebird": "<img id='orange' class='food bird' src='images/orangebird.png'>",
+	"greenbird": "<img id='green' class='food bird' src='images/greenbird.png'>",
+	"bluebird": "<img id='blue' class='food bird' src='images/bluebird.png'>",
 	"bunny": "<img id='bunny' class='food' src='images/bunny.png'>",
 	"tail": "<img id='tail' class='tail' src='images/tail.png'>"
 }
@@ -47,6 +50,7 @@ function createAchievements() {
 	Achievement.create("Early Bird", "First prey is a bird");
 	Achievement.create("My anaconda don't", "Reach length of 20");
 	Achievement.create("Got the munchies", "Eat 10 prey");
+	Achievement.create("Slice and dice", "Get killed by a Giant Blade Trap");
 }
 
 function giveAchievement(name) {
@@ -138,10 +142,23 @@ function spawnFood() {
 	while(!blocked) {
 		var a = randomCoordinate();
 		var b = randomCoordinate();
-		//if(a !== x && b !== y) {
 		if(isEmpty("."+a+"-"+b)) {
 			var coordinate = "." + a + '-' + b;
-			addSprite(coordinate, sprites.redbird);
+			var food;
+			var type = Math.random();
+			if(type < 0.25) {
+				food = sprites.orangebird;
+			} else if(type < 0.50) {
+				food = sprites.bluebird;
+			} else if(type < 0.75) {
+				food = sprites.greenbird;
+			} else if(type < 1) {
+				food = sprites.redbird;
+			}
+			
+			
+			
+			addSprite(coordinate, food);
 			blocked = true;
 		}	 
 	}
@@ -241,7 +258,7 @@ function collisionCheck(a,b) {
 		return true;
 	}
 	// If slider, return true
-	if($("."+a+"-"+b).has(".slider").length > 0) {
+	if($("."+a+"-"+b).has(".slider").length > 0) { // Does not work
 		cause = "Hit a slider";
 		return true;
 	}
@@ -258,9 +275,12 @@ function gameOver() {
 	if(cause == "Eat tail") {
 		giveAchievement("Chasing Tail");
 	}
+	if(cause == "Hit a slider") {
+		giveAchievement("Slice and dice");
+	}
 	clearInterval(interval);
 	$(".tail").remove();
-	$("." + x + "-" + y).find(".head").replaceWith(sprites["dead"]);
+	deathAnimation();
 	$(".container").css("opacity",.5);
 	var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
 	$("#hud").append(button);
@@ -269,6 +289,25 @@ function gameOver() {
 	dead.play();
 }
 
+function deathAnimation() {	
+	var i = 1;
+	var rotation = setInterval(function() {
+		if(i === 7) {
+			clearInterval(rotation);
+			$(".head").replaceWith(sprites["dead"]);
+		}
+		rotateHead();
+		i++;
+	}, 250);
+}
+
+function rotateHead() {
+	var id = $(".head").attr("id");
+	if (id === "headup") { $(".head").replaceWith(sprites["head39"]) }	
+	if (id === "headright") { $(".head").replaceWith(sprites["head40"]) }	
+	if (id === "headdown") { $(".head").replaceWith(sprites["head37"]) }	
+	if (id === "headleft") {$(".head").replaceWith(sprites["head38"]) }
+}
 
 function startMovement() {
 	interval = setInterval(move,speed);
