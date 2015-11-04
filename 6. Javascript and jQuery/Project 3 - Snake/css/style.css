@@ -269,10 +269,10 @@ button:focus {
 
 /******* Media Queries *******/
 
-@media (min-width: 50px) and (max-width: 500px) {
+@media (min-width: 50px) and (max-width: 700px) {
 	.direction {
-		height: 100px;
-		width: 100px;
+		height: 50px;
+		width: 50px;
 	}
 }
 
