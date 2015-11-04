@@ -1,4 +1,4 @@
-# [Snake - More like Mini Moldorm])(https://htmlpreview.github.io/?https://github.com/magfurulabeer/the_odin_project/blob/master/6.%20Javascript%20and%20jQuery/Project%203%20-%20Snake/index.html)
+# [Snake - More like Mini Moldorm](https://htmlpreview.github.io/?https://github.com/magfurulabeer/the_odin_project/blob/master/6.%20Javascript%20and%20jQuery/Project%203%20-%20Snake/index.html)
 A Snake game with extra features that I made for The Odin Project. There are still more features to be added in the future
 
 ## Features
