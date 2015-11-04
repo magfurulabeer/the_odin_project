@@ -367,8 +367,11 @@ function restart() {
 	}
 }	
 
-theme.play();
-$(".start").on("click",start);
+$(document).ready(function() {
+	theme.play();
+	$(".start").on("click",start);
+})
+
 
 
 
