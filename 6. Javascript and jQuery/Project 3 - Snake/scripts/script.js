@@ -451,6 +451,7 @@ $(document).ready(function() {
  		$("#leftcontrols").css("width","60px");
  		$("#rightcontrols").css("height","200px");
  		$("#rightcontrols").css("width","60px");
+ 		$(document.body).css("height","100%");
 	}
 	theme.play();
 	$(".start").on("click",start);
