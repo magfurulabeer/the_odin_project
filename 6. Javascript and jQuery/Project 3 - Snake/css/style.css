@@ -227,6 +227,38 @@ button:focus {
 
 
 
+/******* Mobile Controls *******/
+
+#leftcontrols {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 150px;
+	height: 500px;
+}
+
+#rightcontrols {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	width: 150px;
+	height: 500px;
+}
+
+.up { background-image: url(../images/up.png); }
+.down { background-image: url(../images/down.png); }
+.left { background-image: url(../images/left.png); }
+.right { background-image: url(../images/right.png); }
+
+.direction {
+	height: 150px;
+	width: 150px;
+	border: 1px solid #000;
+	background-size: 100%;
+	border-radius: 50%;
+	margin-bottom: 15px;
+}
+
 
 
 @-moz-document url-prefix() {
