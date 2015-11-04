@@ -1,0 +1,97 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding-top: 110px;
+	background-repeat: no-repeat;
+	background-color: #0d0d0d;
+	position: relative;
+	height: 100%;
+}
+
+main {
+	height: 100%;
+	width: 100%;
+}
+
+/******* Navbar *******/
+
+nav.navbar.navbar-default {
+	margin-top: 30px;
+	background-color: rgba(0,0,0,.3);
+	border: none;
+	height: 50px;
+}
+
+#logo {
+	height: 120px;
+	width: auto;
+	position: relative;
+	bottom: 40px;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: rgba(255,255,255,.8);
+}
+
+
+
+/******* Home Page *******/
+h1.hero,h2.hero {
+	font-family: 'Marck Script', cursive;
+	color: #fff;
+	text-align: center;
+	vertical-align: middle;
+}
+
+h1.hero {
+	font-size: 4em;
+	margin: 200px auto 0px auto;
+}
+
+h2.hero {
+	margin: 0;
+}
+
+
+/******* Contacts *******/
+
+
+
+
+/******* General *******/
+
+.well {
+	margin-top: 10px;
+	background-color: rgba(255,255,255,.65);
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 1% 5%;
+	color: rgba(0,0,0,.85);
+	font-family: Helvetica, sans-serif;
+	text-align: left;
+}
+
+.title {
+	font-size: 2.7em;
+	padding-bottom: 0px;
+	border-bottom: 2px solid rgba(0,0,0,.85);
+}
+
+/******* Media Queries *******/
+
+@media (min-width: 50px) and (max-width: 768px) {
+	.navbar-default .navbar-nav>li {
+		background-color: rgba(0,0,0,.3);
+		text-align: center;
+	}
+
+	.navbar-default .navbar-nav {
+		margin-top: 0;
+	}
+}
+
+
+
