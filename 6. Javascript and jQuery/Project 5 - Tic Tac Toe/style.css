@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'Dickie';
+    src: url('Dickie.ttf');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+*	{
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-image: url(paper.jpg);
+}
+
+/******* Title *******/
+.title	{
+	position: relative;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+h1 {
+	font-size: 7em;
+	letter-spacing: .08em;
+}
+
+p {
+	font-size: 2em;
+}
+
+
+.myname {
+	position: absolute;
+	top: 91px;
+	right: -36px;
+}
+
+/******* Main Content *******/
+
+#content {
+	height: 100%;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	text-align: center;
+	font-family: 'Dickie';
+	-ms-transform: rotate(-1deg); /* IE 9 */
+	-webkit-transform: rotate(-1deg); /* Safari */
+	transform: rotate(-2deg);
+	
+}
+
+.vertical {
+	width: 150px;
+	height: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	border-width: 25px 30px 10px 20px;
+	border-image: url("border.png") 25 30 10 20 repeat stretch;
+}
+
+.horizontal {
+	width: 450px;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	border-width: 25px 30px 10px 20px;
+	border-image: url("border.png") 40 6 93 18 repeat stretch;
+	border-right: none;
+	border-left: none;
+	position: relative;
+	bottom: 322px;
+}
+
+.container {
+	width: 464px;
+	height: 480px;
+	position: relative;
+	bottom: 654px;
+	left: 395px;
+}
+
+.box {
+	/*box-sizing: border-box;
+	border: 1px solid #000;*/
+	height: 150px;
+	width: 150px;
+	display: inline-block;
+	margin-bottom: 14px;
+	vertical-align: top;
+	
+}
+
+.x, .o {
+	
+	font-size: 15em;
+	position: relative;
+	bottom: 38px;
+}
+
+.x {	color: red;		}
+.o {	color: blue;	}
+
+
+
+
+
