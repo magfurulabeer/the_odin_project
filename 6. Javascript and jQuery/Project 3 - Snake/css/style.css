@@ -55,6 +55,7 @@ body {
 #stats {
 	background-color: rgba(255,255,255,.65);
 	padding: 10px;
+	position: relative;
 }
 
 #stats h2 {
@@ -203,9 +204,9 @@ p.achievement {
 	border-radius: 50%;
 	height: 35px;
 	width: 35px;
-	position: relative;
-	bottom: 7px;
-	left: 45px;
+	position: absolute;
+	bottom: 3px;
+	right: 140px;
 }
 
 button:focus {
@@ -231,10 +232,6 @@ button:focus {
 @-moz-document url-prefix() {
     .container {
     	height: 405px;
-    }
-
-    .sound {
-    	left: 35px;
     }
 }
 

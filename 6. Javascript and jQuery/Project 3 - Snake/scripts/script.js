@@ -219,6 +219,7 @@ function eat(a,b) {
 	} else if($(coord).children(".heart").length > 0) {
 		$(coord).find(".heart").remove();
 		score = score + 50;
+		displayScore();
 		removeTail(5);
 		giveAchievement("Liposuction");
 		fanfare.play();
