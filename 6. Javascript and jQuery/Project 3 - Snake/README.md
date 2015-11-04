@@ -15,5 +15,5 @@ A Snake game with extra features that I made for The Odin Project. There are sti
 * Ability to get Achievements
 * An achievement list which is displayed after pressing the button on top on Game Over
 * A scoreboard and a restart button
-* Music, sounds, and a mute button
+* Music, sounds, and a mute button (NOTE: Mute button currently does not work in FireFox)
 
