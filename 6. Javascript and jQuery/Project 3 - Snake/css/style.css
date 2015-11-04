@@ -232,6 +232,10 @@ button:focus {
     .container {
     	height: 405px;
     }
+
+    .sound {
+    	left: 35px;
+    }
 }
 
 

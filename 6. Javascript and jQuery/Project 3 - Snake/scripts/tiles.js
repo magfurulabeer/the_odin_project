@@ -3,7 +3,7 @@ var sliderInterval;
 var sliderX;
 var sliderY;
 var sliderDirection = "right";
-var razeTree = new Audio('sounds/shatter.wav'); 
+
 
 function setTile(name, newClass) {
 	var tiles = ["grass", "green", "yellowflower1", "yellowflower2", "pinkflower1", "pinkflower2", "grassy"];
