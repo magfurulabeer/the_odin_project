@@ -239,7 +239,7 @@ button:focus {
 
 #rightcontrols {
 	position: fixed;
-	top: 50px;
+	top: 15px;
 	right: 0;
 	width: 150px;
 	height: 500px;
