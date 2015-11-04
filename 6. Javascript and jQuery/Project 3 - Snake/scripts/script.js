@@ -444,6 +444,14 @@ function restart() {
 }	
 
 $(document).ready(function() {
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ 		$(".direction").css("height","50px");
+ 		$(".direction").css("width","50px");
+ 		$("#leftcontrols").css("height","200px");
+ 		$("#leftcontrols").css("width","60px");
+ 		$("#rightcontrols").css("height","200px");
+ 		$("#rightcontrols").css("width","60px");
+	}
 	theme.play();
 	$(".start").on("click",start);
 	$(".sound").on("click",toggleMute);
