@@ -267,6 +267,14 @@ button:focus {
     }
 }
 
+/******* Media Queries *******/
+
+@media (min-width: 50px) and (max-width: 500px) {
+	.direction {
+		height: 100px;
+		width: 100px;
+	}
+}
 
 
 
