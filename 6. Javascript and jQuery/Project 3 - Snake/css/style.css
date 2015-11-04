@@ -194,7 +194,17 @@ p.achievement {
 	margin: 0 10px 10px 30px;
 }
 
+.top {
+	bottom: 3px;
+}
 
+.right {
+	right:1px;
+}
+
+.bottom {
+	bottom: 4px
+}
 
 
 

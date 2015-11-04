@@ -52,7 +52,7 @@ function createAchievements() {
 function giveAchievement(name) {
 	Achievement.achievements.push(name);
 	displayAchievement(name);
-	console.log(name);
+
 }
 
 function displayAchievement(name) {
@@ -240,6 +240,11 @@ function collisionCheck(a,b) {
 		cause = "Hit a tree";
 		return true;
 	}
+	// If slider, return true
+	if($("."+a+"-"+b).has(".slider").length > 0) {
+		cause = "Hit a slider";
+		return true;
+	}
 	return false;
 }
 
@@ -277,6 +282,7 @@ function setData() {
 	score = 0;
 	tail = [];
 	Achievement.achievements = [];
+	slideronmap = false;
 }
 
 function initiate() {
@@ -312,6 +318,7 @@ function start() {
 
 function restart() {
 	if(!newGame) {
+		clearInterval(sliderInterval);
 		gameovertheme.pause();
 		button.play();
 		$(".list").off().remove();

@@ -1,3 +1,10 @@
+var slideronmap = false;
+var sliderInterval;
+var sliderX;
+var sliderY;
+var sliderDirection = "right";
+var razeTree = new Audio('sounds/shatter.wav'); 
+
 function setTile(name, newClass) {
 	var tiles = ["grass", "green", "yellowflower1", "yellowflower2", "pinkflower1", "pinkflower2", "grassy"];
 	for(var i in tiles) {
@@ -14,6 +21,7 @@ function makeBackground() {
 		var newClass = giveBackground();
 		square.addClass(newClass);
 	}
+	slider();
 	addTrees();
 }
 
@@ -62,38 +70,181 @@ function addTree() {
 					treeSprite(tr,"treetr");
 					treeSprite(bl,"treebl");
 					treeSprite(br,"treebr");
-					break;
 				} else if (type < 0.70) {
 					treeSprite(tl,"embertl");
 					treeSprite(tr,"embertr");
 					treeSprite(bl,"emberbl");
 					treeSprite(br,"emberbr");
-					break;
 				} else if (type < 0.85) {
 					treeSprite(tl,"deadtl");
 					treeSprite(tr,"deadtr");
 					treeSprite(bl,"deadbl");
 					treeSprite(br,"deadbr");
-					break;
-
 				} else if (type < 0.95) {
 					treeSprite(tl,"eviltl");
 					treeSprite(tr,"eviltr");
 					treeSprite(bl,"evilbl");
 					treeSprite(br,"evilbr");
-					break;
 				} else if (type < 1) {
 					treeSprite(tl,"mushtl");
 					treeSprite(tr,"mushtr");
 					treeSprite(bl,"mushbl");
 					treeSprite(br,"mushbr");
-					break;
 				} 
-				
 				valid = true;
 			}		
 		}
 	}
+}
+
+function slider() {
+	sliderX = 1;
+	sliderY = 1;
+	var tl = "." + sliderX + "-" + sliderY;
+	var bl = "." + (sliderX+1) + "-" + sliderY;
+	var tr = "." + sliderX + "-" + (sliderY+1);
+	var br = "." + (sliderX+1) + "-" + (sliderY+1);
+	var chance = Math.random();
+	if(chance < 0.5) {
+		addSprite(tl,"<img id='rslidertl' class='slider top' src='images/rslidertl.png'>");
+		addSprite(tr,"<img id='rslidertr' class='slider top right' src='images/rslidertr.png'>");
+		addSprite(bl,"<img id='rsliderbl' class='slider bottom' src='images/rsliderbl.png'>");
+		addSprite(br,"<img id='rsliderbr' class='slider bottom right' src='images/rsliderbr.png'>");
+		slideronmap = true;
+		if(slideronmap) { // In if statement for possible future changes
+			sliderInterval = setInterval(sliderMovement,100);
+			sliderDirection = "right";
+		}
+	} else {
+		slideronmap = false;
+	}
+}
+
+
+function sliderMovement() {
+		var tl = "." + sliderX + "-" + sliderY;
+		var bl = "." + (sliderX+1) + "-" + sliderY;
+		var tr = "." + sliderX + "-" + (sliderY+1);
+		var br = "." + (sliderX+1) + "-" + (sliderY+1);
+		
+		switch(sliderDirection) {
+			case "right":
+				moveRight();
+				break;
+			case "left":
+				moveLeft();
+				break;
+			case "down":
+				moveDown();
+				break;
+			case "up":
+				moveUp();
+				break;
+		}
+
+		function moveRight() {
+			destroyOnImpact();
+			$(tr).find(".slider").appendTo($("." + sliderX + "-" + (sliderY+2)));
+			$(br).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY+2)));
+			$(tl).find(".slider").appendTo($("." + sliderX + "-" + (sliderY+1)));
+			$(bl).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY+1)));
+			sliderY++;
+			newDirection();
+		}
+
+		function moveLeft() {
+			destroyOnImpact();
+			$(tl).find(".slider").appendTo($("." + sliderX + "-" + (sliderY-1)));
+			$(bl).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY-1)));
+			$(tr).find(".slider").appendTo($("." + sliderX + "-" + (sliderY)));
+			$(br).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY)));
+			sliderY--;
+			newDirection();
+		}
+
+		function moveDown() {
+			destroyOnImpact();
+			$(bl).find(".slider").appendTo($("." + (sliderX+2) + "-" + (sliderY)));
+			$(tl).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY)));
+			$(br).find(".slider").appendTo($("." + (sliderX+2) + "-" + (sliderY+1)));
+			$(tr).find(".slider").appendTo($("." + (sliderX+1) + "-" + (sliderY+1)));	
+			sliderX++;
+			newDirection();
+		}
+
+		function moveUp() {
+			destroyOnImpact();
+			$(tl).find(".slider").appendTo($("." + (sliderX-1) + "-" + (sliderY)));
+			$(bl).find(".slider").appendTo($("." + (sliderX) + "-" + (sliderY)));
+			$(tr).find(".slider").appendTo($("." + (sliderX-1) + "-" + (sliderY+1)));	
+			$(br).find(".slider").appendTo($("." + (sliderX) + "-" + (sliderY+1)));
+			sliderX--;
+			newDirection();
+		}
+
+		function newDirection() {
+			if(sliderX === 1 && sliderY === 20) {
+				sliderDirection = "down";
+			}
+			if(sliderX === 1 && sliderY === 1 ) {
+				sliderDirection = "right";
+			}
+			if(sliderX === 20 && sliderY === 20) {
+				sliderDirection = "left";
+			}
+			if(sliderX === 20 && sliderY === 1 ) {
+				sliderDirection = "up";
+			}
+		}
+
+		function destroyOnImpact() {
+			if($(tl).children(".tree").length > 0) {
+				razeTree.play();
+				removeTree($(tl));
+			}
+			if($(tr).children(".tree").length > 0) {
+				razeTree.play();
+				removeTree($(tr));
+			}
+			if($(bl).children(".tree").length > 0) {
+				razeTree.play();
+				removeTree($("." + (sliderX+1) + "-" + sliderY)); // Keeps throwing a Reference error saying bl isn't defined
+			}
+			if($(br).children(".tree").length > 0) {
+				razeTree.play();
+				removeTree($(br));
+			}
+		}
+}
+
+function removeTree(coord) {
+	coord.find(".tree").remove();
+	coord.removeClass("treetl");
+	coord.removeClass("treetr");
+	coord.removeClass("treebl");
+	coord.removeClass("treebr");
+
+	coord.removeClass("embertl");
+	coord.removeClass("embertr");
+	coord.removeClass("emberbl");
+	coord.removeClass("emberbr");
+
+	coord.removeClass("deadtl");
+	coord.removeClass("deadtr");
+	coord.removeClass("deadbl");
+	coord.removeClass("deadbr");
+
+	coord.removeClass("eviltl");
+	coord.removeClass("eviltr");
+	coord.removeClass("evilbl");
+	coord.removeClass("evilbr");
+
+	coord.removeClass("mushtl");
+	coord.removeClass("mushtr");
+	coord.removeClass("mushbl");
+	coord.removeClass("mushbr");
+
+	coord.addClass("green");
 }
 
 function isEmpty(coord) {
