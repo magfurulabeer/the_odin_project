@@ -230,7 +230,7 @@ button:focus {
 /******* Mobile Controls *******/
 
 #leftcontrols {
-	position: absolute;
+	position: fixed;
 	top: 50px;
 	left: 0;
 	width: 150px;
@@ -238,7 +238,7 @@ button:focus {
 }
 
 #rightcontrols {
-	position: absolute;
+	position: fixed;
 	top: 50px;
 	right: 0;
 	width: 150px;
