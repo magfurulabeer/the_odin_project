@@ -44,7 +44,7 @@ var Achievement = {
 
 function createAchievements() {
 	Achievement.create("Chasing Tail", "Die from eating your own tail.");
-	Achievement.create("Tree Hugger", "Die from crashing into a tree");
+	Achievement.create("Treehugger", "Die from crashing into a tree");
 	Achievement.create("Where no man has gone before", "Die from going out of bounds");
 	Achievement.create("Super Sonic", "Max out your speed");
 	Achievement.create("Early Bird", "First prey is a bird");
