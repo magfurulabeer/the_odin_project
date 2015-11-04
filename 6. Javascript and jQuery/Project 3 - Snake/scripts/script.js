@@ -283,6 +283,9 @@ function gameOver() {
 	$(".container").css("opacity",.5);
 	var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
 	$("#hud").append(button);
+	if($(".list").length > 1) { // Firefox occassionally appends 2 buttons
+		$(".list").last().remove();
+	}
 	$(".list").hide().delay(5000).fadeIn(0);
 	$(".list").on("click",showAchievements);
 	dead.play();
