@@ -4,6 +4,7 @@ A Snake game with extra features that I made for The Odin Project. There are sti
 ## Features
 * Moveable sprite who gains one tail segment after eating prey
 * Every time you eat, there is a 15% chance a heart will appear
+* Hearts will only stay for 5 seconds before they poof away
 * Hearts cut your tail length by 5
 * Going out of bounds leads to Game Over
 * Hitting a tree or a giant blade trap will also lead to Game Over
