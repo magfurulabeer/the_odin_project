@@ -398,6 +398,9 @@ function initiate() {
 			turn(e.which);
 		}
 	});
+	$(".direction").click(function() {
+		turn($(this).data("num"));
+	})
 	startMovement();
 	spawnFood();
 	newGame = false;
