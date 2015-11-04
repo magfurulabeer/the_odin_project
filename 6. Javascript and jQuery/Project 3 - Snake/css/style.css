@@ -194,6 +194,24 @@ p.achievement {
 	margin: 0 10px 10px 30px;
 }
 
+.sound {
+	background-image: url(../images/soundicon.png);
+	background-repeat: no-repeat;
+	background-size: 80%;
+	background-position: center;
+	border: 1px solid rgba(0,0,0,.7);
+	border-radius: 50%;
+	height: 35px;
+	width: 35px;
+	position: relative;
+	bottom: 7px;
+	left: 45px;
+}
+
+button:focus {
+	outline:0;
+}
+
 .top {
 	bottom: 3px;
 }

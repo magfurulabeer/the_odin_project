@@ -7,7 +7,12 @@ var button = new Audio('sounds/button.wav');
 var dead = new Audio('sounds/dead.wav'); 
 var movesound = new Audio('sounds/movesound.wav'); 
 var chirp = new Audio('sounds/bird.wav'); 
+var razeTree = new Audio('sounds/shatter.wav'); 
+var fanfare = new Audio('sounds/fanfare.wav'); 
+var poof = new Audio('sounds/poof.wav'); 
 
+
+var rotation;
 var over;
 var newGame = true;
 var cause;
@@ -19,6 +24,7 @@ var y;
 var interval;
 var score;
 var firstPrey;
+var sounds = [theme, gameovertheme,eatsound,button,dead,movesound,chirp,razeTree,fanfare];
 var sprites = {
 	"head38": "<img id='headup' class='head' src='images/headup.png'>",
 	"head40": "<img id='headdown' class='head' src='images/headdown.png'>",
@@ -30,7 +36,9 @@ var sprites = {
 	"greenbird": "<img id='green' class='food bird' src='images/greenbird.png'>",
 	"bluebird": "<img id='blue' class='food bird' src='images/bluebird.png'>",
 	"bunny": "<img id='bunny' class='food' src='images/bunny.png'>",
-	"tail": "<img id='tail' class='tail' src='images/tail.png'>"
+	"tail": "<img id='tail' class='tail' src='images/tail.png'>",
+	"heart": "<img id='heart' class='heart' src='images/heart.png'>",
+	"poof": "<img id='poof' class='poof' src='images/poof.png'>"
 }
 var Achievement = {
 	"achievements": [],
@@ -42,6 +50,7 @@ var Achievement = {
 }
 
 
+
 function createAchievements() {
 	Achievement.create("Chasing Tail", "Die from eating your own tail.");
 	Achievement.create("Treehugger", "Die from crashing into a tree");
@@ -51,12 +60,20 @@ function createAchievements() {
 	Achievement.create("My anaconda don't", "Reach length of 20");
 	Achievement.create("Got the munchies", "Eat 10 prey");
 	Achievement.create("Slice and dice", "Get killed by a Giant Blade Trap");
+	Achievement.create("Liposuction", "Get a heart");
 }
 
 function giveAchievement(name) {
-	Achievement.achievements.push(name);
-	displayAchievement(name);
-
+	var include = false;
+	for(var i in Achievement.achievements) {
+		if(Achievement.achievements[i] === name) {
+			include = true
+		}
+	}
+	if(!include) {
+		Achievement.achievements.push(name);
+		displayAchievement(name);
+	}
 }
 
 function displayAchievement(name) {
@@ -138,35 +155,37 @@ function moveSprite(a,b) {
 }
 
 function spawnFood() {
+	var food;
+	var type = Math.random();
+	if(type < 0.25) {
+		food = sprites.orangebird;
+	} else if(type < 0.50) {
+		food = sprites.bluebird;
+	} else if(type < 0.75) {
+		food = sprites.greenbird;
+	} else if(type < 1) {
+		food = sprites.redbird;
+	}
+	spawnSprite(food);
+}
+
+function spawnSprite(sprite) {
 	var blocked = false;
 	while(!blocked) {
 		var a = randomCoordinate();
 		var b = randomCoordinate();
 		if(isEmpty("."+a+"-"+b)) {
 			var coordinate = "." + a + '-' + b;
-			var food;
-			var type = Math.random();
-			if(type < 0.25) {
-				food = sprites.orangebird;
-			} else if(type < 0.50) {
-				food = sprites.bluebird;
-			} else if(type < 0.75) {
-				food = sprites.greenbird;
-			} else if(type < 1) {
-				food = sprites.redbird;
-			}
-			
-			
-			
-			addSprite(coordinate, food);
+			addSprite(coordinate, sprite);
 			blocked = true;
 		}	 
 	}
+	return coordinate;
 }
 
 function eat(a,b) {
 	var coord = "." + a + "-" + b;
-	if($(coord).children().length > 0) {
+	if($(coord).children(".food").length > 0) {
 		if(tail.length === 0) {
 			firstPrey = $(coord).find(".food").attr("id");
 			switch(firstPrey) {
@@ -183,10 +202,31 @@ function eat(a,b) {
 		spawnFood();
 		changeSpeed(10);
 		eatsound.play();
+		var chance = Math.random();
+		if(chance >= .85) {
+			var c = spawnSprite(sprites.heart);
+			setTimeout(function() {
+				if($(c).has(".heart").length > 0) {
+					$(c).find(".heart").replaceWith(sprites.poof).fadeOut(1000);
+					poof.play();
+					setTimeout(function() {
+						$(c).find(".poof").remove();
+					},1000)
+				}
+			},5000);
+		}
 		return true;
+	} else if($(coord).children(".heart").length > 0) {
+		$(coord).find(".heart").remove();
+		score = score + 50;
+		removeTail(5);
+		giveAchievement("Liposuction");
+		fanfare.play();
 	}
 	return false;
 }
+
+
 
 function changeSpeed(num) {
 	if(speed > 50) {
@@ -238,6 +278,15 @@ function addTail(a,b) {
 	}
 	if(tail.length === 20) {
 		giveAchievement("My anaconda don't");
+	}
+}
+
+function removeTail(num) {
+	for(var i = 0; i < num; i++) {
+		if(tail.length > 0) {
+			var coord = tail.pop();
+			$("." + coord).find(".tail").remove();
+		}
 	}
 }
 
@@ -297,7 +346,7 @@ function gameOver() {
 
 function deathAnimation() {	
 	var i = 1;
-	var rotation = setInterval(function() {
+	rotation = setInterval(function() {
 		if(i === 7) {
 			clearInterval(rotation);
 			$(".head").replaceWith(sprites["dead"]);
@@ -332,6 +381,8 @@ function setData() {
 }
 
 function initiate() {
+	dead.pause();
+	clearInterval(rotation);
 	restart();
 	setData();
 	displayScore();
@@ -351,6 +402,17 @@ function initiate() {
 	newGame = false;
 }
 
+function toggleMute() {
+	for(var i in sounds) {
+		if(sounds[i].muted === true) {
+			$(this).css("opacity",1);
+			sounds[i].muted = false;
+		} else {
+			$(this).css("opacity",.5);
+			sounds[i].muted = true;
+		}
+	}
+}
 
 function start() {
 	theme.pause();
@@ -360,12 +422,14 @@ function start() {
 	$(".container").removeClass("splash");
 	initiate();
 	$(".restart").on("click",initiate);
+
 }
 
 function restart() {
 	if(!newGame) {
 		clearInterval(sliderInterval);
 		gameovertheme.pause();
+		gameovertheme.currentTime = 0;
 		button.play();
 		$(".list").off().remove();
 		removeAchievements();
@@ -378,6 +442,7 @@ function restart() {
 $(document).ready(function() {
 	theme.play();
 	$(".start").on("click",start);
+	$(".sound").on("click",toggleMute);
 })
 
 
