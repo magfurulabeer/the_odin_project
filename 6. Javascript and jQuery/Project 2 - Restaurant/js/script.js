@@ -34,6 +34,9 @@ function about() {
 function menu() {
 	var menuBeginning = "<div class='menu'><h2 class='title'>Menu</h2><h3 class='center'>D&eacute;jeuner</h3><ul>"			
 	var menuEnding = "</ul></div>"
+
+	$(document.body).css("background-image","url(images/home-art.png)");
+	$(document.body).css("background-size","auto");
 	$("#content").children().remove();
 	
 	$("#content").html(menuBeginning);
@@ -43,13 +46,8 @@ function menu() {
 		$(".menu").find("ul").children("li").last().append("<h5 class='price'>" + menuItem.item[i].price + "</h5></li>");
 	}
 	$("#content").append(menuEnding);
-	if(fromPage !== "home") {
-		$(document.body).css("background-image","url(images/home-art.png)");
-		$(document.body).css("background-size","cover");
-	} 
 	$("#content").hide().fadeIn(1000);
 	
-
 	fromPage = "menu";
 }
 
