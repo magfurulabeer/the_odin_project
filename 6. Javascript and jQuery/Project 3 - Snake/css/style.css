@@ -228,7 +228,7 @@ button:focus {
 
 
 /******* Mobile Controls *******/
-
+/*
 #leftcontrols {
 	position: fixed;
 	top: 50px;
@@ -259,7 +259,7 @@ button:focus {
 	margin-bottom: 15px;
 }
 
-
+*/
 
 @-moz-document url-prefix() {
     .container {

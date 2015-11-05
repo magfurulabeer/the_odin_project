@@ -398,9 +398,9 @@ function initiate() {
 			turn(e.which);
 		}
 	});
-	$(".direction").click(function() {
+	/*$(".direction").click(function() {
 		turn($(this).data("num"));
-	})
+	})*/
 	startMovement();
 	spawnFood();
 	newGame = false;
@@ -444,7 +444,7 @@ function restart() {
 }	
 
 $(document).ready(function() {
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	/*if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  		$(".direction").css("height","100px");
  		$(".direction").css("width","100px");
  		$("#leftcontrols").css("height","400px");
@@ -452,7 +452,7 @@ $(document).ready(function() {
  		$("#rightcontrols").css("height","400px");
  		$("#rightcontrols").css("width","100px");
  		$(document.body).css("height","100%")
-	}
+	}*/
 	theme.play();
 	$(".start").on("click",start);
 	$(".sound").on("click",toggleMute);
