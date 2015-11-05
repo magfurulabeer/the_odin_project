@@ -24,7 +24,7 @@ var y;
 var interval;
 var score;
 var firstPrey;
-var sounds = [theme, gameovertheme,eatsound,button,dead,movesound,chirp,razeTree,fanfare];
+var sounds = [theme, gameovertheme,eatsound,button,dead,movesound,chirp,razeTree,fanfare,poof];
 var sprites = {
 	"head38": "<img id='headup' class='head' src='images/headup.png'>",
 	"head40": "<img id='headdown' class='head' src='images/headdown.png'>",
