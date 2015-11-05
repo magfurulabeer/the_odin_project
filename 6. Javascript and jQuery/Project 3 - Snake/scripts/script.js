@@ -54,7 +54,7 @@ var Achievement = {
 function createAchievements() {
 	Achievement.create("Chasing Tail", "Die from eating your own tail.");
 	Achievement.create("Treehugger", "Die from crashing into a tree");
-	Achievement.create("Where no man has gone before", "Die from going out of bounds");
+	Achievement.create("Snake? Snake?! SNAAAAAKE!!!!", "Die from going out of bounds");
 	Achievement.create("Super Sonic", "Max out your speed");
 	Achievement.create("Early Bird", "First prey is a bird");
 	Achievement.create("My anaconda don't", "Reach length of 20");
@@ -318,7 +318,7 @@ function collisionCheck(a,b) {
 function gameOver() {
 	if(!over) {
 		if(cause == "Out of bounds") {
-			giveAchievement("Where no man has gone before");
+			giveAchievement("Snake? Snake?! SNAAAAAKE!!!!");
 		}
 		if(cause == "Hit a tree") {
 			giveAchievement("Treehugger");
@@ -453,6 +453,8 @@ $(document).ready(function() {
  		$("#rightcontrols").css("width","100px");
  		$(document.body).css("height","100%")
 	}*/
+
+
 	theme.play();
 	$(".start").on("click",start);
 	$(".sound").on("click",toggleMute);
