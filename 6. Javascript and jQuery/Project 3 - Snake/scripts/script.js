@@ -60,7 +60,7 @@ function createAchievements() {
 	Achievement.create("My anaconda don't", "Reach length of 20");
 	Achievement.create("Got the munchies", "Eat 10 prey");
 	Achievement.create("Slice and dice", "Get killed by a Giant Blade Trap");
-	Achievement.create("Liposuction", "Get a heart");
+	Achievement.create("Liposuction", "Cut your tail shorter");
 }
 
 function giveAchievement(name) {
