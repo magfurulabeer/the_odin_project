@@ -13,7 +13,65 @@
 
 body {
 	background-image: url(paper.jpg);
+	overflow-x: hidden;
 }
+
+/******* Dialogue Box *******/
+
+#dialogueoverlay {
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	width: 100%;
+	z-index: 5;
+}
+
+#dialoguebox {
+	display: none;
+	position: fixed;
+	background-color: #fbfbfb;
+	border: 1px solid #bababa;
+	border-radius: 2px;
+	box-shadow: 1px 2px 1px #bababa;
+	width: 360px;
+	height: 147px;
+	z-index: 10;
+	font-family: Lucida, Sans-serif;
+	box-sizing: border-box;
+	padding: 25px 30px;
+}
+
+#dialoguebox p {
+	font-size: 1em;
+	margin-bottom: 25px;
+}
+
+.bttn {
+	background-color: #fbfbfb;
+	border: 1px solid #bababa;
+	border-radius: 2px;
+	margin-left: 18%;
+}
+
+.bttn-small {
+	width: 70px;
+	height: 28px;
+}
+
+.bttn-large {
+	width: 100px;
+	height: 75px;
+	margin-left: 10%;
+	margin-top: -10px;
+}
+
+#gameStyle, #symbol {
+	display: none;
+}
+
 
 /******* Title *******/
 .title	{
@@ -36,6 +94,13 @@ p {
 	position: absolute;
 	top: 91px;
 	right: -36px;
+}
+
+#display {
+	font-size: 4em;
+	position: relative;
+	bottom: 20px;
+	margin-bottom: -20px;
 }
 
 /******* Main Content *******/
@@ -61,6 +126,7 @@ p {
 	margin-right: auto;
 	border-width: 25px 30px 10px 20px;
 	border-image: url("border.png") 25 30 10 20 repeat stretch;
+	border-style: solid;
 }
 
 .horizontal {
@@ -70,6 +136,7 @@ p {
 	margin-right: auto;
 	border-width: 25px 30px 10px 20px;
 	border-image: url("border.png") 40 6 93 18 repeat stretch;
+	border-style: solid;
 	border-right: none;
 	border-left: none;
 	position: relative;
@@ -96,7 +163,7 @@ p {
 }
 
 .x, .o {
-	
+	font-family: 'Dickie';
 	font-size: 15em;
 	position: relative;
 	bottom: 38px;
@@ -105,7 +172,16 @@ p {
 .x {	color: red;		}
 .o {	color: blue;	}
 
+.symbolFix {
+	bottom: 0;
+	font-size: 6em;
+}
 
+.centered {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 
 

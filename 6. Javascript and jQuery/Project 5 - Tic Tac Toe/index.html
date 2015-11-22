@@ -6,14 +6,31 @@
 	<meta charset="UTF-8">
 	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
 </head>
 <body>
+	<div id="dialogueoverlay"></div>
+	<div id="dialoguebox">
+		<div id="gameStyle">
+			<p class='centered'>Choose a game style:</p>
+			<button class='bttn bttn-small' onclick='submit(true, true)'>PVP</button>
+			<button class='bttn bttn-small' onclick='submit(true, false)'>PVC</button>
+		</div>
+		<div id="symbol">
+			<p class="centered">Choose your symbol:</p>
+			<!--<small>X always goes first</small>-->
+			<button class='bttn bttn-large' onclick='submit(false, false)'><h1 class='x symbolFix'>X</h1></button>
+			<button class='bttn bttn-large' onclick='submit(false, true)'><h1 class='o symbolFix'>O</h1></button>
+		</div>
+	</div>
 	<main id="content">
 		<div class="title">
 			<h1>Tic Tac Toe</h1>
 			<p class="myname">By Magfurul Abeer</p>
 		</div>
 		<h2 id="display"></h2>
+		<button onclick="dialogue"></button>
 		<div class="vertical"></div>
 		<div class="horizontal"></div>
 		<div class="container">
@@ -29,8 +46,10 @@
 		</div>
 		<div class="score"></div>
 
+
 	</main>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="game.js"></script>
 </body>
 </html>

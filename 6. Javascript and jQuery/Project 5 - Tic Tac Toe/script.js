@@ -1,8 +1,13 @@
-var p1Turn = true;
-var symX = "<h1 class='x'>X</h1>";
-var symO = "<h1 class='o'>O</h1>";
+var p1Turn, symX, symO;
 
-$(".box").on("click",move);
+var Player = function(symbol, computer) {
+		this.symbol = symbol;
+		this.computer = computer;		
+}
+
+Player.prototype.move = function() {
+	move();
+}
 
 function move() {
 	if($(this).children().length === 0) {
@@ -12,14 +17,42 @@ function move() {
 		} else {
 			$(this).append(symO);
 		}
-		changeTurn();
+		
 	}
 }
 
-function changeTurn() {
-	if(p1Turn) {
-		p1Turn = false;
+function changeTurn(player1turn) {	
+	displayTurn(!player1turn);
+	player1turn = !player1turn;
+}
+
+function checkForWin() {
+	
+}
+
+
+function displayTurn(player1turn) {
+	if(player1turn) {
+		$("#display").html("Player 1 Turn").addClass("x").removeClass("o");
 	} else {
-		p1Turn = true;
+		$("#display").html("Player 2 Turn").addClass("o").removeClass("x");
 	}
 }
+
+function initialize() {
+	
+	symX = "<h1 class='x'>X</h1>";
+	symO = "<h1 class='o'>O</h1>";
+
+	$(".box").on("click",move);
+	var p1 = new Player("x", false);
+	var p2 = new Player("o", false);	
+	changeTurn(p1Turn);
+}
+
+function newGame() {
+	
+	
+}
+
+initialize();
