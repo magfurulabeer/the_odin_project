@@ -13,7 +13,8 @@
 
 body {
 	background-image: url(paper.jpg);
-	background-size: cover;
+	background-size: 100%;
+	backkground-repeat: repeat-y;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
@@ -105,6 +106,14 @@ p {
 	margin-bottom: -20px;
 }
 
+#score {
+	position: fixed;
+	display: inline-block;
+	border-width: 5px 5px 5px 5px;
+	border-image: url("border.png") 25 30 10 20 repeat stretch;
+	border-style: solid;
+}
+
 /******* Main Content *******/
 
 #content {
@@ -115,9 +124,10 @@ p {
 	margin-top: 50px;
 	text-align: center;
 	font-family: 'Dickie';
-	-ms-transform: rotate(-1deg); /* IE 9 */
-	-webkit-transform: rotate(-1deg); /* Safari */
-	transform: rotate(-2deg);
+	/*-ms-transform: rotate(-1deg); /* IE 9 */
+	/*-webkit-transform: rotate(-1deg); /* Safari */
+	/*transform: rotate(-2deg);*/
+
 	
 }
 
@@ -158,14 +168,12 @@ p {
 }
 
 .box {
-	/*box-sizing: border-box;
-	border: 1px solid #000;*/
+	/*box-sizing: border-box;*/
 	height: 150px;
 	width: 150px;
 	display: inline-block;
 	margin-bottom: 14px;
-	vertical-align: top;
-	border:1px solid #000;
+	vertical-align:top;
 }
 
 .x, .o {

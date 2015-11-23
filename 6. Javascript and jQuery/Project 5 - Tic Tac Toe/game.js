@@ -5,17 +5,11 @@ var Game = function() {
 	var	symO = "<h1 class='o'>O</h1>";
 	var Player = function(name, symbol, computer) {
 		var wins = 0;
-		var losses = 0;
-		var draws = 0;
 		this.name = name;
 		this.symbol = symbol;
 		this.computer = computer;
-		this.wins = function() { return wins };
-		this.losses = function() { return wins };
-		this.draws = function() { return wins };
-		this.win = function() { win++ };
-		this.lose = function() { lose++ };
-		this.draw = function() { draw++ };
+		this.winCount = function() { return wins };
+		this.win = function() { wins++ }; // Add to prototype
 	}
 	var gameover = false;
 	var players = [];
@@ -39,6 +33,7 @@ var Game = function() {
 		currentPlayer = players[0];
 		$(".box").on("click", move);
 		display(players[0]);
+		refreshScore();
 	}
 
 	function display(player) {
@@ -50,16 +45,29 @@ var Game = function() {
 		}
 	}
 
+	function refreshScore() {
+		var p1score = players[0].name + ": " + players[0].winCount();
+		var p2score = players[1].name + ": " + players[1].winCount();
+		$("#score").html("<p>" + p1score + "</p><p>" + p2score + "</p>");
+	}
+
 	function move() {
-		if($(this).children().length === 0 && !currentPlayer.computer) {
+		if($(this).children().length === 0 && !currentPlayer.computer && gameover === false) {
 			currentPlayer.symbol ? $(this).append(symX) : $(this).append(symO);
-			changeTurn();
+			
 			if(checkForWin()){
-				console.log("true");
+				gameOver();
 			} else {
-				console.log("false");
+				changeTurn();
+				if(pvp === false) {
+					computerTurn();
+				}
 			}
 		}
+	}
+
+	function computerTurn() {
+		
 	}
 
 	function changeTurn() {
@@ -73,10 +81,13 @@ var Game = function() {
 
 	function checkForWin() {
 		for(var i in threeinarow) {
+			var sym;
 			var first = $("#" + threeinarow[i][0]).find("h1").text() || "first";
 			var second = $("#" + threeinarow[i][1]).find("h1").text() || "second";
 			var third = $("#" + threeinarow[i][2]).find("h1").text() || "third";
 			if(first === second && second === third) {
+				sym = (first === 'X') ?  true : false;
+				winner = (players[0].symbol === sym) ? players[0] : players[1];
 				return true;
 			}
 		}
@@ -84,13 +95,39 @@ var Game = function() {
 	}
 
 	function gameOver() {
+		gameover = true;
 		$("#display").html(winner.name + " wins!");
 		if(winner.symbol) {
 			$("#display").addClass("x").removeClass("o");
 		} else {
 			$("#display").addClass("o").removeClass("x");
 		}
+		winner.win();
+		console.log(winner.winCount());
+		refreshScore();
+		var restart = setTimeout(newGame, 2000)
 	}
+
+	function newGame() {
+		var count = 3;
+		var countdown = setInterval(function() {
+			if(count === 0) {
+				$(".box").children().remove();
+				gameover = false;
+				display(players[0]);
+				refreshScore();
+				clearInterval(countdown);
+			} else {
+				displayText("Restarting in " + count);
+				count --;
+			}
+		}, 1000);		
+	}
+
+	function displayText(str) {
+		$("#display").html(str);
+	}
+	
 
 }
 
@@ -137,12 +174,15 @@ function positionFix() {
 	var container = $("#container");
 	var vertical = $(".vertical");
 	var horizontal = $(".horizontal");
+	var score = $("#score");
 	container.css("left", (windowWidth/2 - 475/2) + "px");
 	container.css("top", (250) + "px");
 	vertical.css("left", (windowWidth/2 - 475/4 + 24) + "px");
 	vertical.css("top", (250) + "px");
 	horizontal.css("left", (windowWidth/2 - 475/2 + 6) + "px");
 	horizontal.css("top", (395) + "px");
+	score.css("left", (windowWidth/2 - 290) + "px");
+	score.css("top", (165) + "px");
 }
 
 $(document).ready(function() {
