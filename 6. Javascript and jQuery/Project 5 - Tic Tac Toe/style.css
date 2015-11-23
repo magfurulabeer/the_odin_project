@@ -13,7 +13,9 @@
 
 body {
 	background-image: url(paper.jpg);
+	background-size: cover;
 	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 /******* Dialogue Box *******/
@@ -127,6 +129,9 @@ p {
 	border-width: 25px 30px 10px 20px;
 	border-image: url("border.png") 25 30 10 20 repeat stretch;
 	border-style: solid;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 .horizontal {
@@ -139,16 +144,17 @@ p {
 	border-style: solid;
 	border-right: none;
 	border-left: none;
-	position: relative;
-	bottom: 322px;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 .container {
-	width: 464px;
+	width: 475px;
 	height: 480px;
-	position: relative;
-	bottom: 654px;
-	left: 395px;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 .box {
@@ -159,7 +165,7 @@ p {
 	display: inline-block;
 	margin-bottom: 14px;
 	vertical-align: top;
-	
+	border:1px solid #000;
 }
 
 .x, .o {
