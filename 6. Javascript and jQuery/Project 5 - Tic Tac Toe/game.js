@@ -65,7 +65,9 @@ var Game = function() {
 			currentPlayer.symbol ? $(this).append(symX) : $(this).append(symO);
 			currentPlayer.takeTurn();
 			if(checkForWin()){ //REFACTOR
-				gameOver();
+				gameOver(false);
+			} else if(draw()) {
+				gameOver(true);
 			} else {
 				changeTurn();
 				if(pvp === false) {
@@ -82,7 +84,9 @@ var Game = function() {
 			currentPlayer.takeTurn();
 			console.log(currentPlayer.name + ": " + currentPlayer.turns());
 			if(checkForWin()){ //REFACTOR
-				gameOver();
+				gameOver(false);
+			} else if(draw()) {
+				gameOver(true);
 			} else {
 				changeTurn();
 			}
@@ -113,7 +117,6 @@ var Game = function() {
 	}
 
 	function changeTurn() {
-		console.log("change turn");
 		if(currentPlayer === players[0]) {
 			currentPlayer = players[1];
 		} else {
@@ -137,17 +140,32 @@ var Game = function() {
 		return false;
 	}
 
-	function gameOver() {
-		gameover = true;
-		$("#display").html(winner.name + " wins!");
-		if(winner.symbol) {
-			$("#display").addClass("x").removeClass("o");
-		} else {
-			$("#display").addClass("o").removeClass("x");
+	function draw() {
+		var count = 0;
+		for(var i = 1; i < 10; i++) {
+			if($("#"+i).children().length > 0) { count ++ };
 		}
-		winner.win();
-		console.log(winner.winCount());
-		refreshScore();
+		if(count === 9) {
+			return true;
+		}
+		return false;
+	}
+
+	function gameOver(isDraw) {
+		gameover = true;
+		if(isDraw) {
+			displayText("It's a draw!");
+			$("#display").removeClass("x").removeClass("o");
+		} else {
+			displayText(winner.name + " wins!");
+			if(winner.symbol) {
+				$("#display").addClass("x").removeClass("o");
+			} else {
+				$("#display").addClass("o").removeClass("x");
+			}
+			winner.win();
+			refreshScore();
+		}
 		var restart = setTimeout(newGame, 2000)
 	}
 
