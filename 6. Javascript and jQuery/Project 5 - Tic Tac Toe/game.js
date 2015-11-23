@@ -5,17 +5,23 @@ var Game = function() {
 	var	symO = "<h1 class='o'>O</h1>";
 	var Player = function(name, symbol, computer) {
 		var wins = 0;
+		var moves = 0;
 		this.name = name;
 		this.symbol = symbol;
 		this.computer = computer;
 		this.winCount = function() { return wins };
 		this.win = function() { wins++ }; // Add to prototype
+		this.turns = function() { return moves };
+		this.takeTurn = function() { moves++ };
+		this.resetMoves = function() { moves = 0 };
 	}
 	var gameover = false;
 	var players = [];
 	var currentPlayer;
 	var winner = players[0];
 	var threeinarow = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+	var corners = [1,3,7,9];
+	var edges = [2,4,6,8];
 
 	this.initialize = function(pvp, computerFirst) {	
 		if(pvp) {
@@ -34,6 +40,9 @@ var Game = function() {
 		$(".box").on("click", move);
 		display(players[0]);
 		refreshScore();
+		if(computerFirst) {
+			computerTurn();
+		}
 	}
 
 	function display(player) {
@@ -54,8 +63,8 @@ var Game = function() {
 	function move() {
 		if($(this).children().length === 0 && !currentPlayer.computer && gameover === false) {
 			currentPlayer.symbol ? $(this).append(symX) : $(this).append(symO);
-			
-			if(checkForWin()){
+			currentPlayer.takeTurn();
+			if(checkForWin()){ //REFACTOR
 				gameOver();
 			} else {
 				changeTurn();
@@ -66,11 +75,45 @@ var Game = function() {
 		}
 	}
 
+	
+	function computerMove(box) {
+		if($(box).children().length === 0 && currentPlayer.computer && gameover === false) {
+			currentPlayer.symbol ? $(box).append(symX) : $(box).append(symO);
+			currentPlayer.takeTurn();
+			console.log(currentPlayer.name + ": " + currentPlayer.turns());
+			if(checkForWin()){ //REFACTOR
+				gameOver();
+			} else {
+				changeTurn();
+			}
+			return true;
+		}
+		return false;
+	}
+
 	function computerTurn() {
-		
+		if(currentPlayer.symbol) {
+			switch(currentPlayer.turns()) {
+				case 0:
+					var firstCorner = $("#"+corners[randomNumber(0,3)]);
+					computerMove(firstCorner);
+					break;
+				case 1:
+					var invalid = true;
+					while(invalid) {
+						var secondCorner = $("#"+corners[randomNumber(0,3)]);
+						if(computerMove(secondCorner)) { invalid = false };
+					}
+					console.log("second move done");
+					break;
+			}
+		} else {
+
+		}
 	}
 
 	function changeTurn() {
+		console.log("change turn");
 		if(currentPlayer === players[0]) {
 			currentPlayer = players[1];
 		} else {
@@ -114,6 +157,8 @@ var Game = function() {
 			if(count === 0) {
 				$(".box").children().remove();
 				gameover = false;
+				players[0].resetMoves();
+				players[1].resetMoves();
 				display(players[0]);
 				refreshScore();
 				clearInterval(countdown);
@@ -128,6 +173,9 @@ var Game = function() {
 		$("#display").html(str);
 	}
 	
+	function randomNumber(max, min) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 
 }
 
