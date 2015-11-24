@@ -6,41 +6,9 @@ var counter = 0;
 var newOperation = true;
 var prevNum = null;
 var buttons = document.getElementsByTagName("button");
-var ee = false;
+var ee = false; // ee = Easter Egg
 var fontSize = 40;
 var padding = 0;
-home();
-
-for (var i = 0; i < buttons.length; i++) {
-	switch(buttons[i].classList[0]) {
-		case "number":
-			buttons[i].addEventListener("click", numClick);
-			break;
-		case "clear":
-			buttons[i].addEventListener("click", clear);
-			break;
-		case "decimal":
-			buttons[i].addEventListener("click", decimalClick);
-			break;
-		case "posneg":
-			buttons[i].addEventListener("click", toggleNegative);
-			break;
-		case "operator":
-			buttons[i].addEventListener("click", setOperation);
-			break;
-		case "equals":
-			buttons[i].addEventListener("click", equals);
-			break;
-		case "percent":
-			buttons[i].addEventListener("click", percentage);
-			break;
-		case "home":
-			buttons[i].addEventListener("click", egg);
-			break;
-	}
-}
-
-display();
 
 Array.prototype.includes = function(item) {
 	for(var i = 0; i < this.length; i++) {
@@ -80,6 +48,7 @@ function decimalClick() {
 	if(!ee) {
 		if(!input.includes(".")) {
 			input.push(".");
+			newOperation = false;
 		}
 		display();
 	}
@@ -315,3 +284,36 @@ function reset() {
 function isOverflowed(element){
     return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
 }
+
+home();
+
+for (var i = 0; i < buttons.length; i++) {
+	switch(buttons[i].classList[0]) {
+		case "number":
+			buttons[i].addEventListener("click", numClick);
+			break;
+		case "clear":
+			buttons[i].addEventListener("click", clear);
+			break;
+		case "decimal":
+			buttons[i].addEventListener("click", decimalClick);
+			break;
+		case "posneg":
+			buttons[i].addEventListener("click", toggleNegative);
+			break;
+		case "operator":
+			buttons[i].addEventListener("click", setOperation);
+			break;
+		case "equals":
+			buttons[i].addEventListener("click", equals);
+			break;
+		case "percent":
+			buttons[i].addEventListener("click", percentage);
+			break;
+		case "home":
+			buttons[i].addEventListener("click", egg);
+			break;
+	}
+}
+
+display();
