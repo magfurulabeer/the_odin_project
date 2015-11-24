@@ -22,6 +22,8 @@ var Game = function() {
 	var threeinarow = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
 	var corners = [1,3,7,9];
 	var edges = [2,4,6,8];
+	var cpuFirst;
+	var changeTactics = false;
 
 	this.initialize = function(pvp, computerFirst) {	
 		if(pvp) {
@@ -40,6 +42,7 @@ var Game = function() {
 		$(".box").on("click", move);
 		display(players[0]);
 		refreshScore();
+		cpuFirst = computerFirst;
 		if(computerFirst) {
 			computerTurn();
 		}
@@ -82,7 +85,6 @@ var Game = function() {
 		if($(box).children().length === 0 && currentPlayer.computer && gameover === false) {
 			currentPlayer.symbol ? $(box).append(symX) : $(box).append(symO);
 			currentPlayer.takeTurn();
-			console.log(currentPlayer.name + ": " + currentPlayer.turns());
 			if(checkForWin()){ //REFACTOR
 				gameOver(false);
 			} else if(draw()) {
@@ -91,29 +93,78 @@ var Game = function() {
 				changeTurn();
 			}
 			return true;
-		}
-		return false;
+		} else { return false }
+		
 	}
 
 	function computerTurn() {
-		if(currentPlayer.symbol) {
-			switch(currentPlayer.turns()) {
-				case 0:
-					var firstCorner = $("#"+corners[randomNumber(0,3)]);
-					computerMove(firstCorner);
-					break;
-				case 1:
-					var invalid = true;
-					while(invalid) {
-						var secondCorner = $("#"+corners[randomNumber(0,3)]);
-						if(computerMove(secondCorner)) { invalid = false };
-					}
-					console.log("second move done");
-					break;
+		if(!gameover) {
+			if(currentPlayer.symbol || changeTactics) {
+				switch(currentPlayer.turns()) {
+					case 0:
+					case 1:
+						if(!tacticalMove(corners)) { tacticalMove(edges) }
+						break;
+					default: 
+						if(interceptionNecessary()) {
+							intercept();
+						} else if( numCorners(currentPlayer.symbol) < 3 ) {
+							tacticalMove(corners);
+						}
+				}
+			} else {
+				if(interceptionNecessary()) {
+					intercept();
+				} else if($("#5").children().length === 0) {
+					computerMove("#"+5);
+				} else {
+					if(!tacticalMove(edges)) { tacticalMove(corners) }
+				}
 			}
-		} else {
-
 		}
+	}
+
+	function tacticalMove(tactics) {
+		for(var i in tactics) {
+			var tactic = ("#"+tactics[i]);
+			var valid = computerMove(tactic);
+			if(valid) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
+	function intercept() {
+		var possible = interceptionNecessary();
+		for(var i in possible) {
+			if($('#'+possible[i]).children().length === 0) {
+				computerMove($("#"+possible[i]));
+			}
+		}
+	}
+
+	// Return number of occupied corners by symbol
+	function numCorners(sym) {
+		sym = (sym === true) ? "X" : "Y";
+		var num = 0;
+		for(var i in corners) {
+			if( $("#"+corners[i]).find("h1").text() === sym ) {
+				num ++;
+			}
+		}
+		return num;
+	}
+
+	function numOccupiedBoxes(specific) {
+		var num = 0;
+		for(var i in specific) {
+			if( $("#"+specific[i]).children().length > 0) {
+				num ++;
+			}
+		}
+		return num;
 	}
 
 	function changeTurn() {
@@ -138,6 +189,37 @@ var Game = function() {
 			}
 		}
 		return false;
+	}
+
+	function interceptionNecessary() {
+		var cpuInterception = false;
+		var plyrInterception = false;
+		for(var i in threeinarow) {
+			var sym = currentPlayer.symbol;
+			sym = (sym === true) ? "X" : "O";
+			var cpuCount = 0;
+			var plyrCount = 0;
+			var empty = 0;
+			for(var x in threeinarow[i]) {
+				if($("#"+threeinarow[i][x]).children().length > 0) {
+					if($("#"+threeinarow[i][x]).find("h1").text() === sym) {
+						cpuCount++;
+					} else {
+						plyrCount++;
+					}
+				} else {
+					empty++;
+				}
+				if(cpuCount === 2 && empty === 1) {
+					cpuInterception = threeinarow[i];
+				}
+				if(plyrCount === 2 && empty === 1) {
+					plyrInterception = threeinarow[i];
+				}
+			}
+		}
+		if(!!cpuInterception) { return cpuInterception };
+		return plyrInterception;
 	}
 
 	function draw() {
@@ -166,20 +248,25 @@ var Game = function() {
 			winner.win();
 			refreshScore();
 		}
-		var restart = setTimeout(newGame, 2000)
+		var restart = setTimeout(newGame, 1500)
 	}
 
 	function newGame() {
 		var count = 3;
 		var countdown = setInterval(function() {
 			if(count === 0) {
+				clearInterval(countdown);
 				$(".box").children().remove();
 				gameover = false;
 				players[0].resetMoves();
 				players[1].resetMoves();
 				display(players[0]);
 				refreshScore();
-				clearInterval(countdown);
+				changeTactics = false;
+				currentPlayer = players[0];
+				if(cpuFirst) {
+					computerTurn();
+				}
 			} else {
 				displayText("Restarting in " + count);
 				count --;
@@ -194,9 +281,7 @@ var Game = function() {
 	function randomNumber(max, min) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-
-}
-
+};
 
 
 function renderAlertBox(gameStyle) {
