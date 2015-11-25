@@ -13,8 +13,10 @@
 
 body {
 	background-image: url(paper.jpg);
-	background-size: 100%;
+	background-size: auto;
 	background-repeat: repeat-y;
+	background-attachment: fixed;
+	overflow-x: hidden;
 }
 
 /******* Dialogue Box *******/
