@@ -14,9 +14,7 @@
 body {
 	background-image: url(paper.jpg);
 	background-size: 100%;
-	backkground-repeat: repeat-y;
-	overflow-x: hidden;
-	overflow-y: scroll;
+	background-repeat: repeat-y;
 }
 
 /******* Dialogue Box *******/
@@ -36,39 +34,39 @@ body {
 	display: none;
 	position: fixed;
 	background-color: #fbfbfb;
-	border: 1px solid #bababa;
+	border: .0625em solid #bababa;
 	border-radius: 2px;
-	box-shadow: 1px 2px 1px #bababa;
-	width: 360px;
-	height: 147px;
+	box-shadow: .0625em .125em .0625em #bababa;
+	width: 22.5em;
+	height: 9.1875em;
 	z-index: 10;
 	font-family: Lucida, Sans-serif;
 	box-sizing: border-box;
-	padding: 25px 30px;
+	padding: 1.5625em 1.875em;
 }
 
 #dialoguebox p {
 	font-size: 1em;
-	margin-bottom: 25px;
+	margin-bottom: 1.5625em;
 }
 
 .bttn {
 	background-color: #fbfbfb;
 	border: 1px solid #bababa;
-	border-radius: 2px;
+	border-radius: .125em;
 	margin-left: 18%;
 }
 
 .bttn-small {
-	width: 70px;
-	height: 28px;
+	width: 5.375em;
+	height: 2.5em;
 }
 
 .bttn-large {
-	width: 100px;
-	height: 75px;
+	width: 7.25em;
+	height: 5.6857em;
 	margin-left: 10%;
-	margin-top: -10px;
+	margin-top: -.625em;
 }
 
 #gameStyle, #symbol {
@@ -80,7 +78,7 @@ body {
 .title	{
 	position: relative;
 	display: inline-block;
-	margin-bottom: 20px;
+	margin-bottom: 1.25em;
 }
 
 h1 {
@@ -95,23 +93,26 @@ p {
 
 .myname {
 	position: absolute;
-	top: 91px;
-	right: -36px;
+	top: 3.6875em;
+	right: -2.25em;
 }
 
 #display {
 	font-size: 4em;
 	position: relative;
-	bottom: 20px;
-	margin-bottom: -20px;
+	bottom: .25em;
+	margin-bottom: -1.25em;
 }
 
 #score {
-	position: fixed;
+	position: absolute;
 	display: inline-block;
-	border-width: 5px 5px 5px 5px;
+	border-width: .3125em .3125em .3125em .3125em;
 	border-image: url("border.png") 25 30 10 20 repeat stretch;
 	border-style: solid;
+	left: 20%;
+	top: 10.3125em;
+
 }
 
 /******* Main Content *******/
@@ -121,7 +122,7 @@ p {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 50px;
+	margin-top: 3.125em;
 	text-align: center;
 	font-family: 'Dickie';
 	/*-ms-transform: rotate(-1deg); /* IE 9 */
@@ -132,59 +133,66 @@ p {
 }
 
 .vertical {
-	width: 150px;
-	height: 450px;
+	width: 9.375em;
+	height: 28.125em;
 	margin-left: auto;
 	margin-right: auto;
-	border-width: 25px 30px 10px 20px;
+	border-width: 1.5625em 1.875em .625em 1.25em;
 	border-image: url("border.png") 25 30 10 20 repeat stretch;
 	border-style: solid;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 }
 
 .horizontal {
-	width: 450px;
-	height: 150px;
+	width: 28.125em;
+	height: 9.375em;
 	margin-left: auto;
 	margin-right: auto;
-	border-width: 25px 30px 10px 20px;
+	border-width: 1.5625em 1.875em .625em 1.25em;
 	border-image: url("border.png") 40 6 93 18 repeat stretch;
 	border-style: solid;
 	border-right: none;
 	border-left: none;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 }
 
 .container {
-	width: 475px;
-	height: 480px;
-	position: fixed;
+	width: 29.6875em;
+	height: 30em;
+	position: absolute;
 	top: 0;
 	left: 0;
 }
 
 .box {
-	/*box-sizing: border-box;*/
-	height: 150px;
-	width: 150px;
+	/*box-sizing: border-box;
+	border: 1px solid black;*/
+	height: 9.375em;
+	width: 9.375em;
 	display: inline-block;
-	margin-bottom: 14px;
+	margin-bottom: .875em;
 	vertical-align:top;
 }
 
 .x, .o {
 	font-family: 'Dickie';
-	font-size: 15em;
+	font-size: 14em;
 	position: relative;
-	bottom: 38px;
+	
 }
 
-.x {	color: red;		}
-.o {	color: blue;	}
+.x {	
+	color: red;	
+	bottom: .135em;	
+}
+.o {	
+	color: blue;
+	bottom: .1em;	
+}
 
 .symbolFix {
 	bottom: 0;
@@ -197,5 +205,8 @@ p {
 	margin-right: auto;
 }
 
+.scrollfix {
+	height: 10em;
+}
 
 

@@ -1,0 +1,50 @@
+#content {
+	margin-top: 1em;
+}
+
+.title {
+	margin-bottom: 0;
+}
+
+.myname {
+	top: 2.1em;
+	right: -1.25em;
+}
+
+h1 {
+	font-size: 5em;
+	letter-spacing: 0.03em;
+}
+
+#display {
+	bottom: -.1em;
+	font-size: 3.5em;
+	left: .3em;
+	top: .3em;
+}
+
+#score {
+	left: 1em;
+	top: 6em;
+}
+
+#score p {
+	font-size: 1.5em;
+}
+
+#container {
+	top: 11em;
+}
+
+.box {
+	margin: 0;
+	width: 8em;
+}
+
+.x, .o {
+	font-size: 13em;
+}
+
+.symbolFix {
+	font-size: 6em;
+}

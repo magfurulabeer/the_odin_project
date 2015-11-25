@@ -326,14 +326,31 @@ function positionFix() {
 	var vertical = $(".vertical");
 	var horizontal = $(".horizontal");
 	var score = $("#score");
-	container.css("left", (windowWidth/2 - 475/2) + "px");
-	container.css("top", (250) + "px");
-	vertical.css("left", (windowWidth/2 - 475/4 + 24) + "px");
-	vertical.css("top", (250) + "px");
-	horizontal.css("left", (windowWidth/2 - 475/2 + 6) + "px");
-	horizontal.css("top", (395) + "px");
-	score.css("left", (windowWidth/2 - 290) + "px");
-	score.css("top", (165) + "px");
+	if(windowHeight > windowWidth) {
+		/*
+		container.css("width",windowWidth);
+		container.css("height",windowWidth);
+		*/
+		vertical.css("width",windowWidth/3);
+		vertical.css("height",windowWidth);
+		horizontal.css("width",windowWidth);
+		horizontal.css("height",windowWidth/3);
+		//container.css("top", (250)/20 + "em");
+		vertical.css("top", (250)/20 + "em");
+		horizontal.css("top", (395)/20 + "em");	
+		container.css("left", (windowWidth/2 - 475/2)/15 + "em");
+		vertical.css("left", (windowWidth/2 - 475/4 + 24)/15 + "em");
+		horizontal.css("left", ("0"));	
+	} else {
+		container.css("top", (250)/16 + "em");
+		vertical.css("top", (250)/16 + "em");
+		horizontal.css("top", (395)/16 + "em");
+		container.css("left", (windowWidth/2 - 475/2)/16 + "em");
+		vertical.css("left", (windowWidth/2 - 475/4 + 24)/16 + "em");
+		horizontal.css("left", (windowWidth/2 - 475/2 + 6)/16 + "em");
+		score.css("left", (windowWidth/2 - 290)/16 + "em");
+		score.css("top", (165)/16 + "em");
+	}
 }
 
 $(document).ready(function() {
