@@ -14,7 +14,6 @@
 body {
 	background-image: url(paper.jpg);
 	background-size: auto;
-	background-repeat: repeat-y;
 	background-attachment: fixed;
 	overflow-x: hidden;
 }
