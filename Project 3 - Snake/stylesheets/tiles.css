@@ -1,0 +1,134 @@
+/******* Tiles *******/ 
+.green {
+  background-image: url(../images/green.png); 
+}
+.grass {
+  background-image: url(../images/grass.png); 
+}
+.center {
+  background-image: url(../images/center.png);
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+}
+.centerleft {
+  background-image: url(../images/centerleft.png);
+}
+.centerright {
+  background-image: url(../images/centerright.png);
+}
+.centertop {
+  background-image: url(../images/centertop.png);
+}
+.centerbottom {
+  background-image: url(../images/centerbottom.png);  
+}
+.topleft {
+  background-image: url(../images/topleft.png);
+}
+.topright {
+  background-image: url(../images/topright.png);
+}
+.bottomleft {
+  background-image: url(../images/bottomleft.png);
+}
+.bottomright {
+  background-image: url(../images/bottomright.png);
+}
+.dirt {
+  background-image: url(../images/dirt.png);
+}
+.dirttop {
+  background-image: url(../images/dirttop.png);
+}
+.dirtbottom {
+  background-image: url(../images/dirtbottom.png);
+}
+.dirtright {
+  background-image: url(../images/dirtright.png);
+}
+.dirtleft {
+  background-image: url(../images/dirtleft.png);
+}
+.grassy {
+  background-image: url(../images/grassy.png);
+}
+.leaf {
+  background-image: url(../images/leaf.png);
+}
+.pinkflower1 {
+  background-image: url(../images/pinkflower1.png);
+}
+.pinkflower2 {
+  background-image: url(../images/pinkflower2.png);
+}
+.yellowflower1 {
+  background-image: url(../images/yellowflower1.png);
+}
+.yellowflower2 {
+  background-image: url(../images/yellowflower2.png);
+}
+.treetl {
+  background-image: url(../images/treetl.png);
+}
+.treetr {
+  background-image: url(../images/treetr.png);
+}
+.treebl {
+  background-image: url(../images/treebl.png);
+}
+.treebr {
+  background-image: url(../images/treebr.png);
+}
+.embertl {
+  background-image: url(../images/embertl.png);
+}
+.embertr {
+  background-image: url(../images/embertr.png);
+}
+.emberbl {
+  background-image: url(../images/emberbl.png);
+}
+.emberbr {
+  background-image: url(../images/emberbr.png);
+}
+
+
+.eviltl {
+  background-image: url(../images/eviltl.png);
+}
+.eviltr {
+  background-image: url(../images/eviltr.png);
+}
+.evilbl {
+  background-image: url(../images/evilbl.png);
+}
+.evilbr {
+  background-image: url(../images/evilbr.png);
+}
+
+
+.deadtl {
+  background-image: url(../images/deadtl.png);
+}
+.deadtr {
+  background-image: url(../images/deadtr.png);
+}
+.deadbl {
+  background-image: url(../images/deadbl.png);
+}
+.deadbr {
+  background-image: url(../images/deadbr.png);
+}
+
+.mushtl {
+  background-image: url(../images/mushtl.png);
+}
+.mushtr {
+  background-image: url(../images/mushtr.png);
+}
+.mushbl {
+  background-image: url(../images/mushbl.png);
+}
+.mushbr {
+  background-image: url(../images/mushbr.png);
+}

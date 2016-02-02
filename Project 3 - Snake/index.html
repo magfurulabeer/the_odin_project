@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snake!</title>
+  <!-- Fonts from fontsquirrel.com -->
+  <link rel="stylesheet" href="fonts/fill/stylesheet.css" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="fonts/outline/stylesheet.css" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/tiles.css">
+</head>
+<body>
+
+  <div id="hud" class="infoBox">
+    <h3>Achievement:</h3>
+    <h3><span id="title"></span></h3>
+  </div>
+  <main id="screen">
+    <div class="container splash">
+      <h1>Snake!</h1>
+      <h3>More like Mini Moldorm!</h3>
+      <h1 class="outline">Snake!</h1>
+      <h3 class="outline">More like Mini Moldorm!</h3>
+      <button class="start">START!</button><br>
+      <small>Disclaimer: All images and sounds are copyright to Nintendo</small>
+    </div>
+  </main>
+  <div id="stats" class="infoBox">
+    <h2>Score: <span id="score">--</span></h2>
+    <button class="sound"></button>
+    <button class="restart">Restart</button>
+  </div>
+  <small><p>Made by Magfurul Abeer</p></small>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="scripts/achievementLoader.js"></script>
+  <script src="scripts/audioLoader.js"></script>
+  <script src="scripts/imageLoader.js"></script>
+  <script src="scripts/tiles.js"></script>
+  <script src="scripts/engine.js"></script>
+  <script src="scripts/script.js"></script>
+  
+  
+</body>
+</html>
