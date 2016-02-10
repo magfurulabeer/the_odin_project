@@ -1,16 +1,25 @@
-// script.js
+ // script.js
 // Magfurul Abeer
 // Contains the document ready function
 
 
 $(document).ready(function() {
 
-  // Play the theme music
-  theme.play();
-
+  
+  var game = new Game();
+  game.initialize();
   // Add event listeners for on and mute buttons
-  $(".start").on("click",start);
+  $(".start").on("click",startGame);
   $(".sound").on("click",toggleMute);
+
+  function startGame() {
+    game.startGame();
+  }
+
+  function toggleMute() {
+    game.audioManager.toggleMute();
+  }
+
 })
 
 
