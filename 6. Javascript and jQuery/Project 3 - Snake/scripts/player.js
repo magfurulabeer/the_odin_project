@@ -77,6 +77,7 @@ Player.prototype.startMovement = function() {
 }
 
 Player.prototype.stopMovement = function() {
+  console.log(this.interval);
   clearInterval(this.interval);
 }
 

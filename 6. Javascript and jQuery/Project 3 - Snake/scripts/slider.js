@@ -157,7 +157,6 @@ Slider.prototype.destroyOnImpact = function(coordinates) {
       // Make sure it doesn't cause 2 death animations
       // Or else there's a bug where one animation stops and the other keeps going infinitely
       if (this.game.player.death == false) {
-        console.log("HIT!");
         this.game.causeOfDeath = "Hit a slider";
         this.game.gameOver();
       };
@@ -167,6 +166,11 @@ Slider.prototype.destroyOnImpact = function(coordinates) {
   // Make bird squawk
   for (box in coordinates) {
     if($( coordinates[box] ).children(".bird").length > 0) {
+      //$(coordinates).css("overflow-y", "visible");
+      var bird = $( coordinates[box] ).find(".bird");
+      bird.animate({bottom: '+=2px'}, 80, function() {
+        bird.animate({bottom: '-=2px'}, 80);
+      });
       this.game.audioManager.chirp.play();
     }
   }

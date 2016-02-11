@@ -11,13 +11,19 @@ $(document).ready(function() {
   // Add event listeners for on and mute buttons
   $(".start").on("click",startGame);
   $(".sound").on("click",toggleMute);
-
+  $(".list").on("click",showAchievements);
+  $(".list").hide();
+  
   function startGame() {
     game.startGame();
   }
 
   function toggleMute() {
     game.audioManager.toggleMute();
+  }
+
+  function showAchievements() {
+    game.achievementManager.showAchievements();
   }
 
 })

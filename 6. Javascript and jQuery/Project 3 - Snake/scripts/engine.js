@@ -4,10 +4,9 @@
 
 
 // TODO:
-// Add remaining achievements (in gameover function as well)
+// Achievement can fade too quickly if shown right when another one is fading
 // Make Options Page
 // Make so slider is random
-// Achievements button
 
 var Game = function() {
   this.score;
@@ -24,7 +23,7 @@ Game.prototype.initialize = function() {
   // Set basic properties
   this.score = 0;
   // Create and init new achievement manager
-  this.achievementManager = new AchievementManager();
+  this.achievementManager = new AchievementManager(this);
   this.achievementManager.initialize();
   // Create and init new tile manager
   this.tileManager = new TileManager();
@@ -37,7 +36,6 @@ Game.prototype.initialize = function() {
   this.audioManager.initialize();
   // Play the theme music
   this.audioManager.theme.play();
-
 }
 
 Game.prototype.startGame = function() {
@@ -76,6 +74,8 @@ Game.prototype.startGame = function() {
 
 // Restarts the game
 Game.prototype.restart = function() { 
+  $(".list").hide();
+  this.player.stopMovement();
   $(".container").css("opacity",1);
   // Clear any intervals from previous incarnations
   this.tileManager.slider.removeSelf();
@@ -181,9 +181,22 @@ Game.prototype.gameOver = function() {
   if(this.causeOfDeath == "Hit a slider") {
     this.achievementManager.giveAchievement("Slice and dice");
   }
+
+  this.showAchievementButton();
 }
 
+Game.prototype.showAchievementButton = function() {
+  var self = this;
+  setTimeout(function() {
+    $("#title").html("");
+    $(".list").show();
 
+    if($(".list").length > 1) { // Firefox occassionally appends 2 buttons
+        $(".list").last().remove();
+    }
+    
+  },2000);
+}
 
 
 
@@ -210,11 +223,7 @@ function gameOver() {
     $(".container").css("opacity",.5);
     var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
     $("#hud").append(button);
-    if($(".list").length > 1) { // Firefox occassionally appends 2 buttons
-      $(".list").last().remove();
-    }
-    $(".list").hide().delay(5000).fadeIn(0);
-    $(".list").on("click",showAchievements);
+    
     dead.play();
     over = true;
   }
@@ -239,11 +248,7 @@ function setData() {
 
 
 
-function achievementButton() {
-  var button = "<button class='list'>&#9662;Show Achievements&#9662;</button>";
-  $("#title").html("");
-  $("#hud").append(button);
-}
+
 
 
 

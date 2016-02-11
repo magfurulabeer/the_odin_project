@@ -3,11 +3,12 @@
 // Contains all achievement related functions 
 // Prepares the achievements for the game and also includes achievement related functions
 
-var AchievementManager = function() {
+var AchievementManager = function(gameObject) {
   // List of achievements the player has achieved
   this.achievements = [];
   // List of achievements and 
   this.list = {};
+  this.game = gameObject;
 }
 
 // Create all the achievements
@@ -62,7 +63,7 @@ AchievementManager.prototype.showAchievements = function() {
   // If tile board is stilll being shown
   if($(".square").length > 0) {
     // Play the game over theme and remove the tile board
-    gameovertheme.play()
+    this.game.audioManager.gameovertheme.play()
     $(".square").remove();
     // Set opacity back to 1, background color to white, and add a pattern background image
     $(".container").css("opacity","1");
