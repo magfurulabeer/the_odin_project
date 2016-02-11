@@ -16,6 +16,7 @@ var Game = function() {
   this.achievementManager;
   this.spriteManager;
   this.causeOfDeath;
+  this.achievementButtonTimeout;
 }
 
 // Initializes data for a new game
@@ -74,8 +75,14 @@ Game.prototype.startGame = function() {
 
 // Restarts the game
 Game.prototype.restart = function() { 
+  // Hide achievement button and clear the timeout in gameover that reveals the button
+  clearInterval(this.achievmentButtonTimeout);
   $(".list").hide();
+  // Remove any achievements being displayed
+  $("#title").html("");
+  // Stop any extra player movement intervals
   this.player.stopMovement();
+  // If opacity is under 1, bring it back (CURRENTLY OPACITY LOWERING IS NOT IN THE GAME)
   $(".container").css("opacity",1);
   // Clear any intervals from previous incarnations
   this.tileManager.slider.removeSelf();
@@ -187,7 +194,7 @@ Game.prototype.gameOver = function() {
 
 Game.prototype.showAchievementButton = function() {
   var self = this;
-  setTimeout(function() {
+  this.achievmentButtonTimeout = setTimeout(function() {
     $("#title").html("");
     $(".list").show();
 
